@@ -1,0 +1,385 @@
+/* 🎨 SALUD Y AUTONOMÍA - HOJA DE ESTILOS UNIFICADA V2 */
+
+:root {
+    /* Paleta de Colores Institucional */
+    --azul-oscuro: #1a365d;
+    --azul-medio: #2b6cb0;
+    --azul-claro: #ebf8ff;
+    --gris-fondo: #f7fafc;
+    --gris-borde: #cbd5e0;
+    --texto-principal: #2d3748;
+    
+    /* Semáforo de Alertas Clínicas (Evidencia Visual) */
+    --rojo-alerta: #e53e3e;
+    --amarillo-alerta: #ecc94b;
+    --verde-alerta: #38a169;
+}
+
+/* Base del Documento */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--gris-fondo);
+    color: var(--texto-principal);
+    padding-bottom: 40px;
+}
+
+/* Cabecera Accesible */
+header {
+    background-color: var(--azul-oscuro);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+header h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Contenedor de Vistas (SPA) */
+.view {
+    display: none;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.view.active {
+    display: block;
+}
+
+/* Dashboard Principal (Menu Grid) */
+.menu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.menu-item {
+    background: white;
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.menu-item:active {
+    transform: scale(0.98);
+    background-color: var(--azul-claro);
+}
+
+.menu-item h3 {
+    font-size: 1.1rem;
+    color: var(--azul-oscuro);
+    margin-bottom: 4px;
+}
+
+.menu-item p {
+    font-size: 0.95rem;
+    color: #4a5568;
+}
+
+/* Selectores y Botoneras de Escalas (Diseño Táctil Móvil) */
+h3 {
+    margin: 15px 0 8px 0;
+    font-size: 1rem;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.grupo-opciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 15px;
+    background: #edf2f7;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.btn-opcion {
+    flex: 1 1 calc(50% - 6px); /* Se acomodan de a dos por fila en celulares */
+    background-color: white;
+    border: 1px solid var(--gris-borde);
+    color: var(--texto-principal);
+    padding: 12px 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.1s ease;
+}
+
+.btn-opcion:active {
+    transform: scale(0.97);
+}
+
+.btn-opcion.active {
+    background-color: var(--azul-medio);
+    color: white;
+    border-color: var(--azul-oscuro);
+    box-shadow: 0 2px 4px rgba(43, 108, 176, 0.3);
+}
+
+/* Formularios de Entrada (Para el Índice IROX) */
+.form-grupo {
+    margin-bottom: 15px;
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--gris-borde);
+}
+
+.form-grupo label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--texto-principal);
+}
+
+.form-grupo input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid var(--gris-borde);
+    border-radius: 6px;
+    background-color: var(--gris-fondo);
+}
+
+.form-grupo input:focus {
+    outline: none;
+    border-color: var(--azul-medio);
+    background-color: white;
+}
+
+/* Paneles de Resultados */
+.resultado-panel {
+    background: white;
+    border: 2px solid var(--azul-oscuro);
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.resultado-panel span {
+    color: var(--azul-medio);
+    font-size: 1.3rem;
+}
+
+/* Bloques de Alertas Dinámicas */
+.alerta-clinica {
+    padding: 14px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.alerta-roja {
+    background-color: var(--rojo-alerta);
+    color: white;
+}
+
+.alerta-amarilla {
+    background-color: var(--amarillo-alerta);
+    color: #2d3748; /* Texto oscuro para asegurar contraste y legibilidad */
+}
+
+.alerta-verde {
+    background-color: var(--verde-alerta);
+    color: white;
+}
+
+/* Componentes de Línea de Tiempo (Tendencias) */
+.tendencia-bloque {
+    background: white;
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+    padding: 14px;
+    margin-top: 20px;
+}
+
+.text-muted {
+    color: #718096;
+    font-style: italic;
+}
+
+/* Botones de Control de Comando */
+.btn-reset-total {
+    background-color: #718096;
+    color: white;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 25px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-reset-total:active {
+    background-color: #4a5568;
+}
+/* 🚀 BOTÓN FLOTANTE INTERACTIVO (FAB) */
+.btn-flotante {
+    position: fixed;
+    bottom: 25px;       /* Distancia del borde inferior */
+    right: 25px;        /* Distancia del borde derecho */
+    width: 60px;
+    height: 60px;
+    background-color: var(--azul-medio); /* Tu color azul institucional */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Lo hace perfectamente redondo */
+    font-size: 1.6rem;
+    cursor: pointer;
+    z-index: 9999;      /* Se asegura de quedar siempre por encima de todo */
+    
+    /* Sombra profunda para dar efecto de flotado 3D */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+    
+    /* Transición suave para las animaciones */
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s, box-shadow 0.2s;
+    
+    /* Animación inicial de "pulso" para captar la atención */
+    animation: flotarPulso 2s infinite ease-in-out;
+}
+
+/* Efecto al pasar el mouse (o tocar en el celular): Se agranda y brilla */
+.btn-flotante:hover {
+    background-color: var(--azul-oscuro);
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Efecto al hacer clic: Se hunde sutilmente */
+.btn-flotante:active {
+    transform: scale(0.95) translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔄 MICROANIMACIÓN: Un balanceo vertical suave que invita a hacer clic */
+@keyframes flotarPulso {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px); /* Sube un poquito */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* CONTEXTO FLOTANTE */
+.monitor-flotante {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 140px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 24px;
+    padding: 20px 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+    z-index: 1000;
+    text-align: center;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.monitor-titulo {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 15px 0;
+}
+
+.grafico-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+/* ESCENA 3D Y ESFERA */
+.escena-3d {
+    width: 90px;
+    height: 90px;
+    perspective: 400px; /* Le da profundidad al espacio */
+}
+
+.esfera-3d-base {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    
+    /* Combinación de sombras para simular volumen y luz desde arriba a la izquierda */
+    background: radial-gradient(circle at 30% 30%, #48bb78, #2f855a 40%, #1a4d32 90%);
+    box-shadow: inset -10px -10px 30px rgba(0,0,0,0.5), 
+                10px 15px 20px rgba(0,0,0,0.2),
+                inset 5px 5px 15px rgba(255,255,255,0.4);
+                
+    /* Animación de giro en el espacio */
+    animation: girarEsfera 6s linear infinite;
+    transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* El reflejo blanco del cristal arriba */
+.brillo-esfera {
+    position: absolute;
+    top: 8%;
+    left: 15%;
+    width: 25px;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: rotate(-15deg);
+    filter: blur(1px);
+}
+
+.texto-estado-medico {
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: #2f855a;
+    transition: color 0.5s ease;
+}
+
+/* ANIMACIÓN DE ROTACIÓN 3D */
+@keyframes girarEsfera {
+    0% {
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+    50% {
+        transform: rotateY(180deg) rotateX(10deg);
+    }
+    100% {
+        transform: rotateY(360deg) rotateX(0deg);
+    }
+}

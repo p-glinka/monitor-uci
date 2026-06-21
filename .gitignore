@@ -1,0 +1,9 @@
+# Configuración local de Visual Studio Code
+.vscode/
+
+# Archivos del sistema operativo que se crean solos
+.DS_Store
+Thumbs.db
+
+# Archivos de registro de errores
+*.log

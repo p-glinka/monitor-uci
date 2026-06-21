@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
+    <title>Salud y Autonomía - Monitor UCI v2</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <button class="btn-flotante" onclick="showView('view-home')" aria-label="Volver al Dashboard">🏠</button>
+    <header role="button" onclick="showView('view-home')" aria-label="Volver al inicio">
+        <h1>Salud y Autonomía</h1>
+    </header>
+
+    <main id="view-home" class="view active">
+        <h2 style="margin-bottom: 15px; font-size: 1.2rem; color: #1a365d;">Dashboard de Monitoreo Crítico</h2>
+        <div class="menu-grid">
+            
+            <div class="menu-item" role="button" onclick="showView('view-gcs')">
+                <h3>Escala de Glasgow (GCS)</h3>
+                <p>Valor Actual: <span id="home-val-gcs">15</span>/15</p>
+            </div>
+            
+            <div class="menu-item" role="button" onclick="showView('view-irox')">
+                <h3>Índice IROX (CNAF)</h3>
+                <p>Valor Actual: <span id="home-val-irox">0.00</span></p>
+            </div>
+
+            <div class="menu-item" role="button" onclick="showView('view-rass')">
+                <h3>Escala RASS (Sedación)</h3>
+                <p>Valor Actual: <span id="home-val-rass">0</span></p>
+            </div>
+
+            <div class="menu-item" role="button" onclick="showView('view-braden')">
+                <h3>Escala Braden (UPP)</h3>
+                <p>Valor Actual: <span id="home-val-braden">23</span>/23</p>
+            </div>
+
+        </div>
+        <button class="btn-reset-total" onclick="resetearTodoElSistema()">Resetear Paciente Actual</button>
+    </main>
+
+    <section id="view-gcs" class="view">
+        <h2>Evaluación Neurológica: Escala de Glasgow</h2>
+        <div id="alerta-gcs" class="alerta-clinica" style="display:none;"></div>
+        
+        <h3>Respuesta Ocular (O)</h3>
+        <div class="grupo-opciones">
+            <button class="btn-opcion" onclick="calcularGlasgow('o', 4, this)">Espontánea (4)</button>
+            <button class="btn-opcion" onclick="calcularGlasgow('o', 3, this)">A la orden (3)</button>
+            <button class="btn-opcion" onclick="calcularGlasgow('o', 2, this)">Al dolor (2)</button>
+            <button class="btn-opcion" onclick="calcularGlasgow('o', 1, this)">Nula (1)</button>
+        </div>
+
+        <h3>Respuesta Verbal (V)</h3>
+        <div class="grupo-opciones">
+            <button class="btn-opcion" onclick="calcularGlasgow('v', 5, this)">Orientado (5)</button>
+            <button class="btn-opcion" onclick="calcularGlasgow('v', 4, this)">Confuso (4)</button>
+            <button class="btn-opcion" onclick="calcularGlasgow('v', 3, this)">Inapropiado (3)</button>
+            <button class="btn-opcion" onclick="calcularGlasgow('v', 2, this)">Incomprensible (2)</button>
+            <button class="btn-opcion" onclick="calcularGlasgow('v', 1, this)">Nula (1)</button>
+        </div>
+
+        <h3>Respuesta Motora (M)</h3>
+        <div class="grupo-opciones">
+            <button class="btn-opcion" onclick="calcularGlasgow('m', 6, this)">Obedece órdenes (6)</button>
+            <button class="btn-opcion" onclick="calcularGlasgow('m', 5, this)">Localiza el dolor (5)</button>
+            <button class="btn-opcion" onclick="calcularGlasgow('m', 4, this)">Retirada al dolor (4)</button>
+            <button class="btn-opcion" onclick="calcularGlasgow('m', 3, this)">Flexión anormal (3)</button>
+            <button class="btn-opcion" onclick="calcularGlasgow('m', 2, this)">Extensión anormal (2)</button>
+            <button class="btn-opcion" onclick="calcularGlasgow('m', 1, this)">Nula (1)</button>
+        </div>
+
+        <div class="resultado-panel">Puntaje Total GCS: <span id="res-gcs">15</span>/15</div>
+        
+        <div class="tendencia-bloque">
+            <h3>Evolución y Tendencia</h3>
+            <div id="timeline-gcs"></div>
+        </div>
+    </section>
+
+    <section id="view-irox" class="view">
+        <h2>Monitoreo Respiratorio: Índice IROX</h2>
+        <div id="alerta-irox" class="alerta-clinica" style="display:none;"></div>
+
+        <div class="form-grupo">
+            <label for="irox-spo2">Saturación de Oxígeno (SpO₂ %):</label>
+            <input type="number" id="irox-spo2" min="50" max="100" placeholder="Ej: 94" oninput="calcIrox(true)">
+        </div>
+        <div class="form-grupo">
+            <label for="irox-fio2">Fracción Inspirada de Oxígeno (FiO₂ decimal):</label>
+            <input type="number" id="irox-fio2" min="0.21" max="1.0" step="0.01" placeholder="Ej: 0.50" oninput="calcIrox(true)">
+        </div>
+        <div class="form-grupo">
+            <label for="irox-fr">Frecuencia Respiratoria (FR rpm):</label>
+            <input type="number" id="irox-fr" min="5" max="70" placeholder="Ej: 22" oninput="calcIrox(true)">
+        </div>
+
+        <div class="resultado-panel">Índice IROX Resultante: <span id="res-irox">0.00</span></div>
+        
+        <div class="tendencia-bloque">
+            <h3>Evolución y Tendencia</h3>
+            <div id="timeline-irox"></div>
+        </div>
+    </section>
+
+    <section id="view-rass" class="view">
+        <h2>Evaluación de Sedación-Agitación (Richmond)</h2>
+        <div id="alerta-rass" class="alerta-clinica" style="display:none;"></div>
+        
+        <h3>Nivel de Agitación / Alerta</h3>
+        <div class="grupo-opciones">
+            <button class="btn-opcion" onclick="calcularRass(4, this)">Combativo (+4)</button>
+            <button class="btn-opcion" onclick="calcularRass(3, this)">Muy Agitado (+3)</button>
+            <button class="btn-opcion" onclick="calcularRass(2, this)">Agitado (+2)</button>
+            <button class="btn-opcion" onclick="calcularRass(1, this)">Inquieto (+1)</button>
+            <button class="btn-opcion" onclick="calcularRass(0, this)">Alerta y Calmo (0)</button>
+        </div>
+
+        <h3>Nivel de Sedación</h3>
+        <div class="grupo-opciones">
+            <button class="btn-opcion" onclick="calcularRass(-1, this)">Somnoliento (-1)</button>
+            <button class="btn-opcion" onclick="calcularRass(-2, this)">Sedación Leve (-2)</button>
+            <button class="btn-opcion" onclick="calcularRass(-3, this)">Sedación Moderada (-3)</button>
+            <button class="btn-opcion" onclick="calcularRass(-4, this)">Sedación Profunda (-4)</button>
+            <button class="btn-opcion" onclick="calcularRass(-5, this)">Sedación Muy Profunda (-5)</button>
+        </div>
+
+        <div class="resultado-panel">Puntaje RASS Actual: <span id="res-rass">0</span></div>
+        
+        <div class="tendencia-bloque">
+            <h3>Evolución y Tendencia</h3>
+            <div id="timeline-rass"></div>
+        </div>
+    </section>
+
+    <section id="view-braden" class="view">
+        <h2>Escala de Braden: Prevención de UPP</h2>
+        <div id="alerta-braden" class="alerta-clinica" style="display:none;"></div>
+        
+        <h3>Percepción Sensorial</h3>
+        <div class="grupo-opciones">
+            <button class="btn-opcion" onclick="calcularBraden('s', 1, this)">Completamente Limitada (1)</button>
+            <button class="btn-opcion" onclick="calcularBraden('s', 2, this)">Muy Limitada (2)</button>
+            <button class="btn-opcion" onclick="calcularBraden('s', 3, this)">Ligeramente Limitada (3)</button>
+            <button class="btn-opcion" onclick="calcularBraden('s', 4, this)">Sin Limitación (4)</button>
+        </div>
+
+        <h3>Exposición a la Humedad</h3>
+        <div class="grupo-opciones">
+            <button class="btn-opcion" onclick="calcularBraden('h', 1, this)">Constantemente Húmedo (1)</button>
+            <button class="btn-opcion" onclick="calcularBraden('h', 2, this)">A Menudo Húmedo (2)</button>
+            <button class="btn-opcion" onclick="calcularBraden('h', 3, this)">Ocasionalmente Húmedo (3)</button>
+            <button class="btn-opcion" onclick="calcularBraden('h', 4, this)">Raramente Húmedo (4)</button>
+        </div>
+
+        <h3>Actividad</h3>
+        <div class="grupo-opciones">
+            <button class="btn-opcion" onclick="calcularBraden('a', 1, this)">Encamado (1)</button>
+            <button class="btn-opcion" onclick="calcularBraden('a', 2, this)">En Silla (2)</button>
+            <button class="btn-opcion" onclick="calcularBraden('a', 3, this)">Deambula Ocasionalmente (3)</button>
+            <button class="btn-opcion" onclick="calcularBraden('a', 4, this)">Deambula Frecuentemente (4)</button>
+        </div>
+
+        <h3>Movilidad</h3>
+        <div class="grupo-opciones">
+            <button class="btn-opcion" onclick="calcularBraden('m', 1, this)">Completamente Inmóvil (1)</button>
+            <button class="btn-opcion" onclick="calcularBraden('m', 2, this)">Muy Limitada (2)</button>
+            <button class="btn-opcion" onclick="calcularBraden('m', 3, this)">Ligeramente Limitada (3)</button>
+            <button class="btn-opcion" onclick="calcularBraden('m', 4, this)">Sin Limitación (4)</button>
+        </div>
+
+        <h3>Nutrición</h3>
+        <div class="grupo-opciones">
+            <button class="btn-opcion" onclick="calcularBraden('n', 1, this)">Muy Pobre (1)</button>
+            <button class="btn-opcion" onclick="calcularBraden('n', 2, this)">Probablemente Inadecuada (2)</button>
+            <button class="btn-opcion" onclick="calcularBraden('n', 3, this)">Adecuada (3)</button>
+            <button class="btn-opcion" onclick="calcularBraden('n', 4, this)">Excelente (4)</button>
+        </div>
+
+        <h3>Roce y Peligro de Lesiones</h3>
+        <div class="grupo-opciones">
+            <button class="btn-opcion" onclick="calcularBraden('r', 1, this)">Problema Potencial (1)</button>
+            <button class="btn-opcion" onclick="calcularBraden('r', 2, this)">Problema (2)</button>
+            <button class="btn-opcion" onclick="calcularBraden('r', 3, this)">Sin Problema Aparente (3)</button>
+        </div>
+
+        <div class="resultado-panel">Puntaje Braden Total: <span id="res-braden">23</span>/23</div>
+        
+        <div class="tendencia-bloque">
+            <h3>Evolución y Tendencia</h3>
+            <div id="timeline-braden"></div>
+        </div>
+    </section>
+
+    <div id="monitor-paciente" class="monitor-flotante">
+    <h4 class="monitor-titulo">Estado UCI</h4>
+    <div class="grafico-container">
+        <div class="escena-3d">
+            <div id="esfera-clinica" class="esfera-3d-base">
+                <div class="brillo-esfera"></div>
+            </div>
+        </div>
+    </div>
+    <div id="texto-estado" class="texto-estado-medico">ESTABLE</div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
