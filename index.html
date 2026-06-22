@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
-    <title>Salud y Autonomía - Monitor UCI v2</title>
+    <title>Monitor UCI v2 / SOLO FINES EDUCATIVOS </title>
+    <meta name="description" content="Plataforma interactiva de simulación de escalas clínicas (Glasgow, IROX, RASS, Braden). Desarrollado exclusivamente con fines educativos y de capacitación en enfermería.">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <button class="btn-flotante" onclick="showView('view-home')" aria-label="Volver al Dashboard">🏠</button>
+    <body>
+    
+<div class="esfera-flotante-container">
+        <div id="monitor-paciente" class="monitor-mini-control">
+            <div class="escena-3d-mini">
+                <div id="esfera-clinica" class="esfera-3d-mini-base">
+                    <div class="brillo-esfera-mini"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="casa-flotante-container">
+        <button class="btn-nav-home" onclick="showView('view-home')" aria-label="Volver al Dashboard">🏠</button>
+    </div>
     <header role="button" onclick="showView('view-home')" aria-label="Volver al inicio">
         <h1>Salud y Autonomía</h1>
     </header>
@@ -192,18 +207,7 @@
             <div id="timeline-braden"></div>
         </div>
     </section>
-
-    <div id="monitor-paciente" class="monitor-flotante">
-    <h4 class="monitor-titulo">Estado UCI</h4>
-    <div class="grafico-container">
-        <div class="escena-3d">
-            <div id="esfera-clinica" class="esfera-3d-base">
-                <div class="brillo-esfera"></div>
-            </div>
-        </div>
-    </div>
-    <div id="texto-estado" class="texto-estado-medico">ESTABLE</div>
-    </div>
+    
 
     <script type="module" src="js/main.js"></script>
 </body>

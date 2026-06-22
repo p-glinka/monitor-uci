@@ -132,21 +132,18 @@ export function actualizarMonitorGeneral(escala, tipoAlerta) {
     }
 
     // 3. Modificamos la esfera y el texto dinámicamente con los renders 3D médicos
-    const esfera = document.getElementById('esfera-clinica');
-    const texto = document.getElementById('texto-estado');
-    if (!esfera || !texto) return;
+  const esfera = document.getElementById('esfera-clinica');
+const texto = document.getElementById('texto-estado');
+if (!esfera) return; // 🛡️ Candado de seguridad: si está la esfera, el sistema ejecuta
 
-    if (peorEstado === 'rojo') {
-        esfera.style.background = 'radial-gradient(circle at 30% 30%, #fc8181, #c53030 40%, #651a1a 90%)';
-        texto.innerText = 'CRÍTICO';
-        texto.style.color = '#c53030';
-    } else if (peorEstado === 'amarillo') {
-        esfera.style.background = 'radial-gradient(circle at 30% 30%, #f6e05e, #d69e2e 40%, #744210 90%)';
-        texto.innerText = 'PRECAUCIÓN';
-        texto.style.color = '#d69e2e';
-    } else {
-        esfera.style.background = 'radial-gradient(circle at 30% 30%, #48bb78, #2f855a 40%, #1a4d32 90%)';
-        texto.innerText = 'ESTABLE';
-        texto.style.color = '#2f855a';
-    }
+if (peorEstado === 'rojo') {
+    esfera.style.background = 'radial-gradient(circle at 30% 30%, #fc8181, #c53030 40%, #651a1a 90%)';
+    if (texto) { texto.innerText = 'CRÍTICO'; texto.style.color = '#c53030'; }
+} else if (peorEstado === 'amarillo') {
+    esfera.style.background = 'radial-gradient(circle at 30% 30%, #f6e05e, #d69e2e 40%, #744210 90%)';
+    if (texto) { texto.innerText = 'PRECAUCIÓN'; texto.style.color = '#d69e2e'; }
+} else {
+    esfera.style.background = 'radial-gradient(circle at 30% 30%, #48bb78, #2f855a 40%, #1a4d32 90%)';
+    if (texto) { texto.innerText = 'ESTABLE'; texto.style.color = '#2f855a'; }
+}
 }

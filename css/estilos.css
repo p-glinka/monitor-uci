@@ -58,12 +58,55 @@ header h1 {
 }
 
 /* Dashboard Principal (Menu Grid) */
+/* ==========================================================================
+   📊 DASHBOARD: CUADRÍCULA DE TARJETAS (2 Columnas Simétricas)
+   ========================================================================== */
+
 .menu-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* 📐 Fuerza exactamente 2 columnas del mismo ancho */
+    gap: 16px !important;                             /* Espaciado limpio entre las tarjetas */
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+/* Ajuste opcional para las tarjetas internas para que queden estilizadas en la grilla */
+.menu-item {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--gris-borde);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 15px;
+    justify-content: space-between; /* Alinea los textos adentro si tienen diferente largo */
+    min-height: 120px;              /* Le da una altura mínima pareja a todas */
 }
+
+.menu-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 📱 ADAPTACIÓN PARA PANTALLAS MUY CHICAS (Por si lo mirás desde un celular angosto) */
+@media (max-width: 480px) {
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* Mantiene las 2 columnas pero achica un toque el hueco */
+        gap: 10px !important;
+    }
+    
+    .menu-item {
+        padding: 12px;
+        min-height: 100px;
+    }
+    
+    .menu-item h3 {
+        font-size: 0.95rem !important; /* Evita que los títulos largos de enfermería se rompan */
+    }
+}
+
 
 .menu-item {
     background: white;
@@ -382,4 +425,94 @@ h3 {
     100% {
         transform: rotateY(360deg) rotateX(0deg);
     }
+}
+/* ========================================================================
+/* ==========================================================================
+   🔮 INDICADOR CLÍNICO ESTÁTICO (Esquina Inferior Izquierda)
+   ========================================================================== */
+.esfera-flotante-container {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    width: 45px !important;
+    height: 45px !important;
+    z-index: 999999 !important;
+}
+
+.monitor-mini-control {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+}
+
+.escena-3d-mini {
+    width: 100% !important;
+    height: 100% !important;
+    perspective: 200px !important;
+}
+
+/* Esfera fija: mantiene el render 3D hiperrealista pero SIN rotación ordinaria */
+.esfera-3d-mini-base {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50% !important;
+    position: relative !important;
+    background: radial-gradient(circle at 30% 30%, #48bb78, #2f855a 40%, #1a4d32 90%);
+    box-shadow: inset -5px -5px 12px rgba(0,0,0,0.5), 
+                0 4px 6px rgba(0,0,0,0.15),
+                inset 3px 3px 6px rgba(255,255,255,0.4) !important;
+    /* Se eliminó la animación 'girarEsfera' para mantener la sobriedad institucional */
+    transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.brillo-esfera-mini {
+    position: absolute !important;
+    top: 8% !important;
+    left: 15% !important;
+    width: 35% !important;
+    height: 25% !important;
+    background: rgba(255,255,255,0.5) !important;
+    border-radius: 50% / 40% !important;
+    transform: rotate(-15deg) !important;
+}
+
+
+/* ==========================================================================
+   🏠 BOTÓN HOME SOBRIO Y LIMPIO (Esquina Inferior Droga)
+   ========================================================================== */
+.casa-flotante-container {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 45px !important;
+    height: 45px !important;
+    z-index: 999999 !important;
+    /* Eliminada la animación de flotación vertical continua */
+}
+
+.btn-nav-home {
+    width: 100% !important;
+    height: 100% !important;
+    background-color: var(--azul-oscuro, #2b6cb0);
+    color: white;
+    border: none;
+    border-radius: 50% !important; /* Mantiene la forma circular perfecta */
+    font-size: 1.2rem;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* El movimiento ahora es SOLO reactivo, controlado por el usuario */
+.btn-nav-home:hover {
+    transform: translateY(-2px); /* Eleva el botón sutilmente solo al apoyar el puntero */
+    box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+    background-color: #2b6cb0;   /* Mantiene el color firme */
+}
+
+.btn-nav-home:active {
+    transform: translateY(1px) scale(0.95); /* Simula el hundimiento real de un botón físico */
 }
