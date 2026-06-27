@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5P722D3QN0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5P722D3QN0');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
     <title>Monitor UCI v2 / SOLO FINES EDUCATIVOS </title>
@@ -36,13 +45,24 @@
             </div>
             <div class="card-escala menu-item" onclick="showView('view-ecg')" role="button" aria-label="Ir al simulador de Ritmos Cardíacos">
             <div class="card-header-escala">
-            <h3>⚡ Ritmos Cardíacos</h3>
-            <span class="badge-valor" id="home-val-ecg">🖥️</span>
+            <h3> Ritmos Cardíacos</h3>
+            <span class="badge-valor" id="home-val-ecg"></span>
     </div>
     <div class="card-body-escala">
-        <p>Monitoreo dinámico y reconocimiento de trazados electrocardiográficos críticos en tiempo real.</p>
+        <p>Monitoreo dinámico y trazados electrocardiográficos críticos en tiempo real.</p>
     </div>
 </div>
+<div class="card-escala menu-item" onclick="showView('view-cefalo')" role="button" aria-label="Ir a Valoración Céfalo-Caudal">
+            <div class="card-header-escala">
+                <h3>Examen Céfalo-Caudal</h3>
+                <span class="badge-valor" id="home-val-cefalo"></span>
+            </div>
+            <div class="card-body-escala">
+                <p>Guía de revisión sistemática y registro del examen físico segmentario del paciente crítico.</p>
+            </div>
+        </div>
+
+    </div> 
         <button class="btn-reset-total" onclick="resetearTodoElSistema()">Resetear Paciente Actual</button>
     </main>
 
@@ -201,7 +221,7 @@
    <main id="view-ecg" class="view">
     <div class="escala-container" style="max-width: 900px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
         
-        <h2 style="color: #1a365d; margin-bottom: 10px; text-align: center;">🖥️ Monitor de Ritmos Cardíacos</h2>
+        <h2 style="color: #1a365d; margin-bottom: 10px; text-align: center;"> Monitor de Ritmos Cardíacos</h2>
         <p style="text-align: center; color: #4a5568; margin-bottom: 20px;">Seleccioná una patología para observar el trazado electrocardiográfico simulado en vivo.</p>
 
         <div style="background: #000; padding: 10px; border-radius: 8px; box-shadow: inset 0 0 20px rgba(0,255,0,0.2); position: relative; margin-bottom: 25px;">
@@ -230,17 +250,170 @@
         </div>
     </div>
 </main>
-<!-- 📝 PIE DE PÁGINA PROFESIONAL (FOOTER) -->
+<main id="view-cefalo" class="view">
+    <div class="escala-container" style="max-width: 750px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        
+        <h2 style="color: #1a365d; text-align: center; margin-bottom: 5px;">Valoración Céfalo-Caudal</h2>
+        <p style="text-align: center; color: #718096; font-size: 0.9rem; margin-bottom: 20px;">Orden recomendado: Cabeza ➔ Cuello ➔ Tórax ➔ Abdomen ➔ Pelvis ➔ Extremidades</p>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+
+            <div class="bloque-cefalo" style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden;">
+                <div onclick="toggleAcordeonCefalo('cc-neuro')" style="background: #edf2f7; padding: 12px 15px; cursor: pointer; font-weight: bold; color: #2d3748; display: flex; justify-content: space-between;">
+                    <span>1. Sistema Neurológico</span> <span>▼</span>
+                </div>
+                <div id="cc-neuro" style="display: none; padding: 15px; background: #fff; border-top: 1px solid #e2e8f0;">
+                    <ul style="margin: 0; padding-left: 20px; color: #4a5568; line-height: 1.6;">
+                        <li><strong>Nivel de conciencia:</strong> Alerta, somnoliento, estupor, coma (Evaluar Glasgow).</li>
+                        <li><strong>Orientación:</strong> Autopsíquica y alopsíquica (Tiempo, espacio y persona).</li>
+                        <li><strong>Pupilas:</strong> Isocóricas, anisocóricas, reactivas a la luz o mióticas/midriáticas.</li>
+                        <li><strong>Habla:</strong> Coherente, disartria, afasia.</li>
+                        <li><strong>Fuerza:</strong> Simetría en la movilización de las 4 extremidades.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bloque-cefalo" style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden;">
+                <div onclick="toggleAcordeonCefalo('cc-cabcuello')" style="background: #edf2f7; padding: 12px 15px; cursor: pointer; font-weight: bold; color: #2d3748; display: flex; justify-content: space-between;">
+                    <span>2. Cabeza y Cuello</span> <span>▼</span>
+                </div>
+                <div id="cc-cabcuello" style="display: none; padding: 15px; background: #fff; border-top: 1px solid #e2e8f0;">
+                    <ul style="margin: 0; padding-left: 20px; color: #4a5568; line-height: 1.6;">
+                        <li><strong>Ojos y Mucosas:</strong> Conjuntivas, coloración (ictericia/palidez), hidratación oral.</li>
+                        <li><strong>Dolor:</strong> Presencia de dolor a la palpación o cefalea.</li>
+                        <li><strong>Movilidad cervical:</strong> Rigidez de nuca o rangos normales de movimiento.</li>
+                        <li><strong>Dispositivos:</strong> SNG, TOT, collares cervicales o catéteres yugulares.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bloque-cefalo" style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden;">
+                <div onclick="toggleAcordeonCefalo('cc-respiratorio')" style="background: #edf2f7; padding: 12px 15px; cursor: pointer; font-weight: bold; color: #2d3748; display: flex; justify-content: space-between;">
+                    <span>3.Sistema Respiratorio</span> <span>▼</span>
+                </div>
+                <div id="cc-respiratorio" style="display: none; padding: 15px; background: #fff; border-top: 1px solid #e2e8f0;">
+                    <ul style="margin: 0; padding-left: 20px; color: #4a5568; line-height: 1.6;">
+                        <li><strong>Frecuencia y Patrón:</strong> Eupneico, taquipnea, bradipnea, uso de músculos accesorios.</li>
+                        <li><strong>Expansión torácica:</strong> Simétrica o asimétrica.</li>
+                        <li><strong>Saturación (SpO₂):</strong> Nivel de oxigenación y requerimiento de O₂ (Cánula, Máscara).</li>
+                        <li><strong>Auscultación:</strong> Murmullo vesicular presente, ruidos agregados (estertores, sibilancias).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bloque-cefalo" style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden;">
+                <div onclick="toggleAcordeonCefalo('cc-cardio')" style="background: #edf2f7; padding: 12px 15px; cursor: pointer; font-weight: bold; color: #2d3748; display: flex; justify-content: space-between;">
+                    <span>4.Sistema Cardiovascular</span> <span>▼</span>
+                </div>
+                <div id="cc-cardio" style="display: none; padding: 15px; background: #fff; border-top: 1px solid #e2e8f0;">
+                    <ul style="margin: 0; padding-left: 20px; color: #4a5568; line-height: 1.6;">
+                        <li><strong>Frecuencia y Presión:</strong> FC, TA (evaluar tendencias hemodinámicas).</li>
+                        <li><strong>Perfusión y Pulsos:</strong> Calidad de pulsos periféricos (centrales y distales).</li>
+                        <li><strong>Llenado capilar:</strong> Normal (≤ 2 segundos) o enlentecido.</li>
+                        <li><strong>Edema:</strong> Presencia, localización y signo de Godet.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bloque-cefalo" style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden;">
+                <div onclick="toggleAcordeonCefalo('cc-gastro')" style="background: #edf2f7; padding: 12px 15px; cursor: pointer; font-weight: bold; color: #2d3748; display: flex; justify-content: space-between;">
+                    <span>5.Sistema Gastrointestinal</span> <span>▼</span>
+                </div>
+                <div id="cc-gastro" style="display: none; padding: 15px; background: #fff; border-top: 1px solid #e2e8f0;">
+                    <ul style="margin: 0; padding-left: 20px; color: #4a5568; line-height: 1.6;">
+                        <li><strong>Abdomen:</strong> Inspección (plano, globoso), palpación (blando, depresible, indoloro).</li>
+                        <li><strong>Ruidos Hidroaéreos (RHA):</strong> Presentes, aumentados o ausentes.</li>
+                        <li><strong>Náuseas / Dieta:</strong> Tolerancia oral, emesis, tipo de dieta o nutrición enteral.</li>
+                        <li><strong>Evacuaciones:</strong> Frecuencia, consistencia y características.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bloque-cefalo" style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden;">
+                <div onclick="toggleAcordeonCefalo('cc-genito')" style="background: #edf2f7; padding: 12px 15px; cursor: pointer; font-weight: bold; color: #2d3748; display: flex; justify-content: space-between;">
+                    <span>6.Sistema Genitourinario</span> <span>▼</span>
+                </div>
+                <div id="cc-genito" style="display: none; padding: 15px; background: #fff; border-top: 1px solid #e2e8f0;">
+                    <ul style="margin: 0; padding-left: 20px; color: #4a5568; line-height: 1.6;">
+                        <li><strong>Diuresis:</strong> Ritmo diurético, volumen y características de la orina (coluria, hematuria).</li>
+                        <li><strong>Dispositivos:</strong> Presencia de sonda vesical (Sonda Foley), permeabilidad.</li>
+                        <li><strong>Continencia:</strong> Control de esfínteres, uso de pañal.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bloque-cefalo" style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden;">
+                <div onclick="toggleAcordeonCefalo('cc-extersup')" style="background: #edf2f7; padding: 12px 15px; cursor: pointer; font-weight: bold; color: #2d3748; display: flex; justify-content: space-between;">
+                    <span>7.Extremidades Superiores</span> <span>▼</span>
+                </div>
+                <div id="cc-extersup" style="display: none; padding: 15px; background: #fff; border-top: 1px solid #e2e8f0;">
+                    <ul style="margin: 0; padding-left: 20px; color: #4a5568; line-height: 1.6;">
+                        <li><strong>Movilidad y Fuerza:</strong> Conservada, paresias, simetría en prensión palmar.</li>
+                        <li><strong>Sensibilidad:</strong> Conservada o alterada (parestesias).</li>
+                        <li><strong>Accesos Venosos:</strong> Venoclisis periférica (VVP), localización, signos de flebitis o infiltración.</li>
+                        <li><strong>Piel:</strong> Integridad, turgencia y lesiones.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bloque-cefalo" style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden;">
+                <div onclick="toggleAcordeonCefalo('cc-exterinf')" style="background: #edf2f7; padding: 12px 15px; cursor: pointer; font-weight: bold; color: #2d3748; display: flex; justify-content: space-between;">
+                    <span>8.Extremidades Inferiores</span> <span>▼</span>
+                </div>
+                <div id="cc-exterinf" style="display: none; padding: 15px; background: #fff; border-top: 1px solid #e2e8f0;">
+                    <ul style="margin: 0; padding-left: 20px; color: #4a5568; line-height: 1.6;">
+                        <li><strong>Movilidad y Marcha:</strong> Rangos articulares, capacidad de bipedestación si corresponde.</li>
+                        <li><strong>Pulsos periféricos:</strong> Pulso pedio y tibial posterior presentes y simétricos.</li>
+                        <li><strong>Riesgos vasculares:</strong> Signos de Trombosis Venosa Profunda (TVP) - dolor, calor, eritema en pantorrilla.</li>
+                        <li><strong>Seguridad:</strong> Evaluación de riesgo de caídas.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bloque-cefalo" style="border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden;">
+                <div onclick="toggleAcordeonCefalo('cc-pieldisp')" style="background: #edf2f7; padding: 12px 15px; cursor: pointer; font-weight: bold; color: #2d3748; display: flex; justify-content: space-between;">
+                    <span>9.Piel, Tegumentos y Dispositivos</span> <span>▼</span>
+                </div>
+                <div id="cc-pieldisp" style="display: none; padding: 15px; background: #fff; border-top: 1px solid #e2e8f0;">
+                    <ul style="margin: 0; padding-left: 20px; color: #4a5568; line-height: 1.6;">
+                        <li><strong>Coloración y Temperatura:</strong> Rosada, pálida, cianótica, rubicunda; fría, tibia o febril.</li>
+                        <li><strong>Riesgo de Lesiones (LPP):</strong> Escala de Braden, zonas de apoyo (sacro, talones).</li>
+                        <li><strong>Heridas y Apósitos:</strong> Quirúrgicas, traumáticas, estado de apósitos (limpios, secos).</li>
+                        <li><strong>Drenajes y Catéteres:</strong> Débito (cantidad y tipo de líquido), fijación y permeabilidad.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="margin-top: 25px; padding: 12px; background: #e6fffa; border-left: 4px solid #319795; border-radius: 4px; font-size: 0.9rem; color: #234e52;">
+            ℹ️ <strong>Recordatorio Profesional:</strong> Registrar los hallazgos con claridad y terminología técnica exacta inmediatamente finalizada la valoración para asegurar la continuidad de cuidados en el pase de guardia.
+        </div>
+
+    </div>
+</main>
+<div style="display: flex; justify-content: flex-end; width: 100%; margin-bottom: 15px;">
+<!-- Reemplazo de la casita por un icono SVG de Dashboard profesional -->
+<button onclick="showView('view-home')" aria-label="Volver al inicio" style="background: none; border: none; cursor: pointer; padding: 5px; display: inline-flex; align-items: center;">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2b6cb0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="9"></rect>
+        <rect x="14" y="3" width="7" height="5"></rect>
+        <rect x="14" y="12" width="7" height="9"></rect>
+        <rect x="3" y="16" width="7" height="5"></rect>
+    </svg>
+</button>
+</div>
+<!-- PIE DE PÁGINA  (FOOTER) -->
     <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid #cbd5e0; background-color: #1a365d; color: white;">
         <p style="font-size: 0.9rem; margin: 0; font-weight: 500;">
-            © 2026 | Desarrollado por Paulo Glinka
+            © 2026 Glinka Paulo
         </p>
         <p style="font-size: 0.75rem; color: #a0aec0; margin-top: 5px; font-style: italic;">
             Plataforma interactiva con fines exclusivamente educativos y de simulación clínica.
         </p>
     </footer>
 
-    <!-- 🏠 BOTÓN HOME CON EFECTO REBOTE Y SOMBRA DE CONTORNO -->
+    <!--  BOTÓN HOME CON EFECTO REBOTE Y SOMBRA DE CONTORNO -->
     <style>
         /* 1. Definimos la animación física del rebote elástico */
         @keyframes reboteEfecto {
@@ -281,14 +454,14 @@
             transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
         }
 
-        /* 🚀 HOVER ACTIVADO: Rebote dinámico + Sombra de Contorno Intensa */
+        /*  HOVER ACTIVADO: Rebote dinámico + Sombra de Contorno Intensa */
         .contenedor-home-nuevo button:hover {
             background-color: #1a365d !important; /* Cambia al azul oscuro institucional */
             
-            /* 💥 ANIMACIÓN: Ejecuta el rebote una sola vez al pasar el puntero */
+            /*  ANIMACIÓN: Ejecuta el rebote una sola vez al pasar el puntero */
             animation: reboteEfecto 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) inside !important;
             
-            /* 🌟 SOMBRA DE CONTORNO: Un aura azul intensa y nítida que define el contorno esférico */
+            /*  SOMBRA DE CONTORNO: Un aura azul intensa y nítida que define el contorno esférico */
             box-shadow: 0 0 0 6px rgba(43, 108, 176, 0.4), 0 8px 20px rgba(0, 0, 0, 0.3) !important;
         }
 
@@ -299,9 +472,7 @@
         }
     </style>
 
-    <div class="contenedor-home-nuevo">
-        <button onclick="showView('view-home')" aria-label="Volver al Dashboard">🏠</button>
-    </div>
+   
 
     <!-- Scripts del sistema -->
     <script type="module" src="js/main.js"></script>

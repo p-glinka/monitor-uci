@@ -1,9 +1,10 @@
 import { inicializarGlasgow, calcularGlasgow, resetGlasgow } from './glasgow.js';
 import { calcIrox, inicializarIrox, resetIrox } from './irox.js';
-import { inicializarRass, calcularRass, resetRass } from './rass.js'; // <-- NUEVO
-import { inicializarBraden, calcularBraden, resetBraden } from './braden.js'; // <-- NUEVO
+import { inicializarRass, calcularRass, resetRass } from './rass.js'; // <--
+import { inicializarBraden, calcularBraden, resetBraden } from './braden.js'; // <-- 
 import { actualizarLineaTiempoUI } from './utilidades.js';
-import { inicializarECG } from './ecg.js'; // <-- NUEVO MÓDULO ECG
+import { inicializarECG } from './ecg.js'; // <-- MÓDULO ECG
+import './cefalo.js'; // <--  MÓDULO DE VALORACIÓN CÉFALO-CAUDAL
 
 // Inicialización de la aplicación al cargar la ventana
 window.onload = () => {

@@ -285,7 +285,7 @@ h3 {
 .btn-reset-total:active {
     background-color: #4a5568;
 }
-/* 🚀 BOTÓN FLOTANTE INTERACTIVO (FAB) */
+/*  BOTÓN FLOTANTE INTERACTIVO (FAB) */
 .btn-flotante {
     position: fixed;
     bottom: 25px;       /* Distancia del borde inferior */
@@ -323,7 +323,7 @@ h3 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* 🔄 MICROANIMACIÓN: Un balanceo vertical suave que invita a hacer clic */
+/*  MICROANIMACIÓN: Un balanceo vertical suave que invita a hacer clic */
 @keyframes flotarPulso {
     0% {
         transform: translateY(0);
@@ -438,7 +438,7 @@ h3 {
     height: 65px !important;
     z-index: 999999 !important; /* Siempre visible por encima de las vistas */
     
-    /* 🔭 EFECTO DE CÁMARA 3D: Activa la profundidad para el giro planetario */
+    /* EFECTO DE CÁMARA 3D: Activa la profundidad para el giro planetario */
     perspective: 800px !important;
 }
 
@@ -478,25 +478,3 @@ h3 {
     transform: scale(0.95) !important;      /* Efecto físico de hundimiento */
 }
 
-/* ==========================================================================
-   🌀 DEFINICIÓN DE LA ANIMACIÓN DE GIRO (Keyframes)
-   ========================================================================== */
-@keyframes rotacionPlanetaria {
-    0% {
-        /* Comienza sin rotación */
-        transform: rotateY(0deg);
-    }
-    100% {
-        /* Da una vuelta completa (360 grados) sobre su eje vertical (Y) */
-        transform: rotateY(360deg);
-    }
-} 
-
-@keyframes rotacionPlanetaria {
-    0% {
-        transform: rotateY(0deg);
-    }
-    100% {
-        transform: rotateY(360deg);
-    }
-}
