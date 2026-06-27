@@ -8,25 +8,9 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <body>
-    
-<div class="esfera-flotante-container">
-        <div id="monitor-paciente" class="monitor-mini-control">
-            <div class="escena-3d-mini">
-                <div id="esfera-clinica" class="esfera-3d-mini-base">
-                    <div class="brillo-esfera-mini"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="casa-flotante-container">
-        <button class="btn-nav-home" onclick="showView('view-home')" aria-label="Volver al Dashboard">🏠</button>
-    </div>
     <header role="button" onclick="showView('view-home')" aria-label="Volver al inicio">
-        <h1>Salud y Autonomía</h1>
+        <h1>Asistente Digital de Valoración para Enfermeria</h1>
     </header>
-
     <main id="view-home" class="view active">
         <h2 style="margin-bottom: 15px; font-size: 1.2rem; color: #1a365d;">Dashboard de Monitoreo Crítico</h2>
         <div class="menu-grid">
@@ -207,8 +191,82 @@
             <div id="timeline-braden"></div>
         </div>
     </section>
-    
+   
+<!-- 📝 PIE DE PÁGINA PROFESIONAL (FOOTER) -->
+    <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid #cbd5e0; background-color: #1a365d; color: white;">
+        <p style="font-size: 0.9rem; margin: 0; font-weight: 500;">
+            © 2026 | Desarrollado por Paulo Glinka
+        </p>
+        <p style="font-size: 0.75rem; color: #a0aec0; margin-top: 5px; font-style: italic;">
+            Plataforma interactiva con fines exclusivamente educativos y de simulación clínica.
+        </p>
+    </footer>
 
+    <!-- 🏠 BOTÓN HOME CON EFECTO REBOTE Y SOMBRA DE CONTORNO -->
+    <style>
+        /* 1. Definimos la animación física del rebote elástico */
+        @keyframes reboteEfecto {
+            0% { transform: translateY(0) scale(1); }
+            30% { transform: translateY(-12px) scale(1.05); } /* Sube y se estira un toque */
+            50% { transform: translateY(2px) scale(0.98); }   /* Cae y amortigua */
+            70% { transform: translateY(-4px) scale(1.01); }  /* Mini rebote final */
+            100% { transform: translateY(0) scale(1); }       /* Vuelve a la calma */
+        }
+
+        .contenedor-home-nuevo {
+            position: fixed !important;
+            bottom: 25px !important;
+            right: 25px !important;
+            left: auto !important;
+            width: 65px !important;
+            height: 65px !important;
+            z-index: 999999 !important;
+        }
+
+        .contenedor-home-nuevo button {
+            width: 100% !important;
+            height: 100% !important;
+            background-color: #2b6cb0 !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 50% !important;
+            font-size: 1.8rem !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            
+            /* Sombra base suave para dar volumen inicial */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+            
+            /* Controla que la transición del color y el aura sea fluida */
+            transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
+        }
+
+        /* 🚀 HOVER ACTIVADO: Rebote dinámico + Sombra de Contorno Intensa */
+        .contenedor-home-nuevo button:hover {
+            background-color: #1a365d !important; /* Cambia al azul oscuro institucional */
+            
+            /* 💥 ANIMACIÓN: Ejecuta el rebote una sola vez al pasar el puntero */
+            animation: reboteEfecto 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) inside !important;
+            
+            /* 🌟 SOMBRA DE CONTORNO: Un aura azul intensa y nítida que define el contorno esférico */
+            box-shadow: 0 0 0 6px rgba(43, 108, 176, 0.4), 0 8px 20px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        /* Feedback táctil al presionarlo con fuerza */
+        .contenedor-home-nuevo button:active {
+            transform: scale(0.92) !important; /* Se achica un poquito al hacer clic */
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.4) !important;
+        }
+    </style>
+
+    <div class="contenedor-home-nuevo">
+        <button onclick="showView('view-home')" aria-label="Volver al Dashboard">🏠</button>
+    </div>
+
+    <!-- Scripts del sistema -->
     <script type="module" src="js/main.js"></script>
 </body>
 </html>
+

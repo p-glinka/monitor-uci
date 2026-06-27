@@ -424,95 +424,79 @@ h3 {
     }
     100% {
         transform: rotateY(360deg) rotateX(0deg);
-    }
-}
-/* ========================================================================
-/* ==========================================================================
-   🔮 INDICADOR CLÍNICO ESTÁTICO (Esquina Inferior Izquierda)
-   ========================================================================== */
-.esfera-flotante-container {
-    position: fixed !important;
-    bottom: 20px !important;
-    left: 20px !important;
-    width: 45px !important;
-    height: 45px !important;
-    z-index: 999999 !important;
-}
-
-.monitor-mini-control {
-    width: 100% !important;
-    height: 100% !important;
-    display: block !important;
-}
-
-.escena-3d-mini {
-    width: 100% !important;
-    height: 100% !important;
-    perspective: 200px !important;
-}
-
-/* Esfera fija: mantiene el render 3D hiperrealista pero SIN rotación ordinaria */
-.esfera-3d-mini-base {
-    width: 100% !important;
-    height: 100% !important;
-    border-radius: 50% !important;
-    position: relative !important;
-    background: radial-gradient(circle at 30% 30%, #48bb78, #2f855a 40%, #1a4d32 90%);
-    box-shadow: inset -5px -5px 12px rgba(0,0,0,0.5), 
-                0 4px 6px rgba(0,0,0,0.15),
-                inset 3px 3px 6px rgba(255,255,255,0.4) !important;
-    /* Se eliminó la animación 'girarEsfera' para mantener la sobriedad institucional */
-    transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.brillo-esfera-mini {
-    position: absolute !important;
-    top: 8% !important;
-    left: 15% !important;
-    width: 35% !important;
-    height: 25% !important;
-    background: rgba(255,255,255,0.5) !important;
-    border-radius: 50% / 40% !important;
-    transform: rotate(-15deg) !important;
-}
-
+    
 
 /* ==========================================================================
-   🏠 BOTÓN HOME SOBRIO Y LIMPIO (Esquina Inferior Droga)
+   🏠 BOTÓN HOME AUTÓNOMO CON ROTACIÓN PLANETARIA 3D
    ========================================================================== */
 .casa-flotante-container {
     position: fixed !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    width: 45px !important;
-    height: 45px !important;
-    z-index: 999999 !important;
-    /* Eliminada la animación de flotación vertical continua */
+    bottom: 25px !important;    /* Distancia limpia desde el borde inferior */
+    right: 25px !important;     /* Clavado a la derecha */
+    left: auto !important;      /* Rompe cualquier alineación vieja */
+    width: 65px !important;     /* Tamaño imponente y cómodo táctilmente */
+    height: 65px !important;
+    z-index: 999999 !important; /* Siempre visible por encima de las vistas */
+    
+    /* 🔭 EFECTO DE CÁMARA 3D: Activa la profundidad para el giro planetario */
+    perspective: 800px !important;
 }
 
 .btn-nav-home {
     width: 100% !important;
     height: 100% !important;
-    background-color: var(--azul-oscuro, #2b6cb0);
-    color: white;
-    border: none;
-    border-radius: 50% !important; /* Mantiene la forma circular perfecta */
-    font-size: 1.2rem;
+    background-color: var(--azul-medio, #2b6cb0) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important; /* Mantenemos la forma esférica */
+    font-size: 1.8rem !important;  /* Icono grande y centrado */
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important; /* Sombra que le da relieve */
+    
+    /* 🪐 EFECTO PLANETARIO 3D: */
+    transform-style: preserve-3d !important; /* Mantiene la profundidad de los hijos (el emoji) */
+    
+    /* 🚀 LA ANIMACIÓN: Llama a 'rotacionPlanetaria' */
+    /* Gira en 10 segundos, de forma suave (linear) y para siempre (infinite) */
+    animation: rotacionPlanetaria 10s linear infinite !important; 
+    
+    transition: background-color 0.3s ease !important;
 }
 
-/* El movimiento ahora es SOLO reactivo, controlado por el usuario */
+/* Interacción: Si el usuario pasa el mouse, el planeta brilla más */
 .btn-nav-home:hover {
-    transform: translateY(-2px); /* Eleva el botón sutilmente solo al apoyar el puntero */
-    box-shadow: 0 6px 10px rgba(0,0,0,0.2);
-    background-color: #2b6cb0;   /* Mantiene el color firme */
+    background-color: var(--azul-oscuro, #1a365d) !important;
+    box-shadow: 0 6px 20px rgba(43, 108, 176, 0.5) !important; /* Sombra azulada de 'aura' */
 }
 
+/* Interacción: Al presionarlo, frena el giro sutilmente para dar feedback táctil */
 .btn-nav-home:active {
-    transform: translateY(1px) scale(0.95); /* Simula el hundimiento real de un botón físico */
+    animation-play-state: paused !important; /* Pausa el giro mientras se presiona */
+    transform: scale(0.95) !important;      /* Efecto físico de hundimiento */
+}
+
+/* ==========================================================================
+   🌀 DEFINICIÓN DE LA ANIMACIÓN DE GIRO (Keyframes)
+   ========================================================================== */
+@keyframes rotacionPlanetaria {
+    0% {
+        /* Comienza sin rotación */
+        transform: rotateY(0deg);
+    }
+    100% {
+        /* Da una vuelta completa (360 grados) sobre su eje vertical (Y) */
+        transform: rotateY(360deg);
+    }
+} 
+
+@keyframes rotacionPlanetaria {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
 }
