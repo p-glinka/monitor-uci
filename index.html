@@ -18,10 +18,10 @@
 </head>
 <body>
     <header role="button" onclick="showView('view-home')" aria-label="Volver al inicio">
-        <h1>Asistente Digital de Valoración para Enfermeria</h1>
+        <h1>Asistente de Valoración para Enfermeria</h1>
     </header>
     <main id="view-home" class="view active">
-        <h2 style="margin-bottom: 15px; font-size: 1.2rem; color: #1a365d;">Dashboard de Monitoreo Crítico</h2>
+        <h2 style="margin-bottom: 15px; font-size: 1.2rem; color: #1a365d;">Monitoreo Crítico</h2>
         <div class="menu-grid">
             
             <div class="menu-item" role="button" onclick="showView('view-gcs')">
@@ -49,16 +49,16 @@
             <span class="badge-valor" id="home-val-ecg"></span>
     </div>
     <div class="card-body-escala">
-        <p>Monitoreo dinámico y trazados electrocardiográficos críticos en tiempo real.</p>
+        <p>Trazados electrocardiográficos</p>
     </div>
 </div>
 <div class="card-escala menu-item" onclick="showView('view-cefalo')" role="button" aria-label="Ir a Valoración Céfalo-Caudal">
             <div class="card-header-escala">
-                <h3>Examen Céfalo-Caudal</h3>
+                <h3>Céfalo-Caudal</h3>
                 <span class="badge-valor" id="home-val-cefalo"></span>
             </div>
             <div class="card-body-escala">
-                <p>examen físico</p>
+                <p>Examen físico Cefalo Caudal </p>
             </div>
         </div>
 
@@ -392,17 +392,9 @@
 
     </div>
 </main>
-<div style="display: flex; justify-content: flex-end; width: 100%; margin-bottom: 15px;">
-<!-- Reemplazo de la casita por un icono SVG de Dashboard profesional -->
-<button onclick="showView('view-home')" aria-label="Volver al inicio" style="background: none; border: none; cursor: pointer; padding: 5px; display: inline-flex; align-items: center;">
-    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2b6cb0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="3" width="7" height="9"></rect>
-        <rect x="14" y="3" width="7" height="5"></rect>
-        <rect x="14" y="12" width="7" height="9"></rect>
-        <rect x="3" y="16" width="7" height="5"></rect>
-    </svg>
+<button onclick="showView('view-home')" class="btn-flotante-home" title="Volver al Menú Principal" aria-label="Volver al inicio">
+    📋
 </button>
-</div>
 <!-- PIE DE PÁGINA  (FOOTER) -->
     <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid #cbd5e0; background-color: #1a365d; color: white;">
         <p style="font-size: 0.9rem; margin: 0; font-weight: 500;">
