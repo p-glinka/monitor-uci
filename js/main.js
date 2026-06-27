@@ -3,6 +3,7 @@ import { calcIrox, inicializarIrox, resetIrox } from './irox.js';
 import { inicializarRass, calcularRass, resetRass } from './rass.js'; // <-- NUEVO
 import { inicializarBraden, calcularBraden, resetBraden } from './braden.js'; // <-- NUEVO
 import { actualizarLineaTiempoUI } from './utilidades.js';
+import { inicializarECG } from './ecg.js'; // <-- NUEVO MÓDULO ECG
 
 // Inicialización de la aplicación al cargar la ventana
 window.onload = () => {
@@ -11,6 +12,7 @@ window.onload = () => {
     inicializarIrox();
     inicializarRass();   // <-- NUEVO
     inicializarBraden(); // <-- NUEVO
+    inicializarECG(); // <-- NUEVA INICIALIZACIÓN DEL MONITOR ECG
     // Cargar visualmente las líneas de tiempo históricas
     actualizarLineaTiempoUI('GCS');
     actualizarLineaTiempoUI('IROX');
