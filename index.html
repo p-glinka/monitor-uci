@@ -34,16 +34,14 @@
                 <h3>Escala Braden (UPP)</h3>
                 <p>Valor Actual: <span id="home-val-braden">23</span>/23</p>
             </div>
-        <div class="card-escala" onclick="showView('view-ecg')" role="button" aria-label="Ir al simulador de Ritmos Cardíacos">
-    <div class="card-header-escala">
-        <h3>⚡ Ritmos Cardíacos</h3>
-        <span class="badge-valor" id="home-val-ecg">🖥️</span>
+            <div class="card-escala menu-item" onclick="showView('view-ecg')" role="button" aria-label="Ir al simulador de Ritmos Cardíacos">
+            <div class="card-header-escala">
+            <h3>⚡ Ritmos Cardíacos</h3>
+            <span class="badge-valor" id="home-val-ecg">🖥️</span>
     </div>
     <div class="card-body-escala">
         <p>Monitoreo dinámico y reconocimiento de trazados electrocardiográficos críticos en tiempo real.</p>
     </div>
-</div>
-</div>
 </div>
         <button class="btn-reset-total" onclick="resetearTodoElSistema()">Resetear Paciente Actual</button>
     </main>
@@ -214,15 +212,19 @@
             </div>
         </div>
 
-        <h3 style="color: #2d3748; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px;">Patologías Clínicas</h3>
-        <div class="grupo-opciones" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 20px;">
+        <h3 style="color: #2d3748; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px;">Biblioteca de Ritmos y Arritmias</h3>
+        <div class="grupo-opciones" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 20px;">
             <button class="btn-opcion active" onclick="cambiarRitmoECG('sinusal', this)">Normal (Sinusal)</button>
-            <button class="btn-opcion" onclick="cambiarRitmoECG('fa', this)">Fibrilación Auricular (FA)</button>
+            <button class="btn-opcion" onclick="cambiarRitmoECG('bradicardia', this)">Bradicardia Sinusal</button>
+            <button class="btn-opcion" onclick="cambiarRitmoECG('taquicardia', this)">Taquicardia Sinusal</button>
+            <button class="btn-opcion" onclick="cambiarRitmoECG('flutter', this)">Flutter Atrial (Aleteo)</button>
+            <button class="btn-opcion" onclick="cambiarRitmoECG('fa', this)">Fibrilación Atrial (FA)</button>
+            <button class="btn-opcion" onclick="cambiarRitmoECG('tsv', this)">Taquicardia Supraventricular (TSV)</button>
             <button class="btn-opcion" onclick="cambiarRitmoECG('tv', this)">Taquicardia Ventricular (TV)</button>
+            <button class="btn-opcion" onclick="cambiarRitmoECG('torsades', this)">Torsades de Pointes</button>
             <button class="btn-opcion" onclick="cambiarRitmoECG('fv', this)">Fibrilación Ventricular (FV)</button>
             <button class="btn-opcion" onclick="cambiarRitmoECG('asistolia', this)">Asistolia</button>
         </div>
-
         <div id="info-clinica-ecg" style="padding: 15px; background: #ebf8ff; border-left: 4px solid #2b6cb0; border-radius: 4px; margin-top: 20px; color: #2d3748;">
             <strong>Descripción Clínica:</strong> Ritmo regular normal conducido por el nodo sinusal. Ondas P presentes y constantes seguidas de complejos QRS angostos.
         </div>
