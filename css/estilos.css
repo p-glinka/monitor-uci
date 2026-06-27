@@ -384,3 +384,39 @@ h3 {
     70% { transform: translateY(-2px) scale(1.01); }
     100% { transform: translateY(0) scale(1); }
 }
+/* ==========================================================================
+   📺 MONITOR ECG FLOTANTE DE ALTA PRECISIÓN
+   ========================================================================== */
+
+/* Contenedor negro del Canvas que se queda fijo en la pantalla */
+.ecg-pantalla-flotante {
+    position: fixed !important;
+    top: 70px;                  /* Se ubica justo debajo de la cabecera azul */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 90% !important;      /* Se adapta al ancho de la pantalla del celu o PC */
+    max-width: 800px !important;
+    background: #000 !important;
+    padding: 10px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 0, 0.1) !important;
+    z-index: 999 !important;    /* Flota por encima de la biblioteca de botones */
+    border: 2px solid #2d3748 !important;
+}
+
+/* Espaciador necesario para que los botones de abajo no se metan debajo del monitor fijo */
+.ecg-espaciador {
+    height: 340px; /* Mismo alto aproximado que ocupa el monitor flotante */
+    display: block;
+}
+
+/* Ajustes responsivos para que en el celular no tape toda la pantalla */
+@media (max-width: 480px) {
+    .ecg-pantalla-flotante {
+        top: 65px;
+        padding: 5px !important;
+    }
+    .ecg-espaciador {
+        height: 220px; /* Menor espacio en móviles ya que el canvas se achica */
+    }
+}
