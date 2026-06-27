@@ -226,4 +226,11 @@ window.cambiarRitmoECG = function(tipo, elemento) {
         else if (tipo === 'asistolia' || tipo === 'fv') badgeHome.innerText = '💀';
         else badgeHome.innerText = '🔴';
     }
-};
+    // Registrar la selección del ritmo en Google Analytics
+    if (typeof gtag === 'function') {
+        gtag('event', 'seleccion_ritmo', {
+            'ritmo_clinico': tipo,
+            'nombre_ritmo': infoRitmos[tipo].nombre
+        });
+    }
+}
