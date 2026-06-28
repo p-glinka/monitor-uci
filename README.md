@@ -11,7 +11,7 @@ Plataforma interactiva diseñada para el personal de enfermería y profesionales
 ### Demostración Interactiva (GIF)
 *(Flujo trabajo de la aplicación: apertura de escala de Glasgow con cálculo dinámico, activación de alertas visuales críticas y el monitor de ECG interactivo en funcionamiento).*
 
-![Demostración de funcionamiento del Monitor UCI](img/demo-funcionamiento.gif)
+<img src="img/demo-funcionamiento.gif?v=1" alt="Demostración de funcionamiento" width="100%">
 
 ###  Dashboard de la Aplicación
 ![Captura de pantalla de la interfaz principal](img/dashboard-captura.png)
