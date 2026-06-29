@@ -43,14 +43,22 @@
                 <h3>Escala Braden (UPP)</h3>
                 <p>Valor Actual: <span id="home-val-braden">23</span>/23</p>
             </div>
+
             <div class="card-escala menu-item" onclick="showView('view-ecg')" role="button" aria-label="Ir al simulador de Ritmos Cardíacos">
             <div class="card-header-escala">
             <h3> Ritmos Cardíacos</h3>
             <span class="badge-valor" id="home-val-ecg"></span>
-    </div>
+            <div class="menu-item" role="button" onclick="showView('view-upp-dinamico')">
+            </div>
+            </div>
     <div class="card-body-escala">
         <p>Trazados electrocardiográficos</p>
     </div>
+</div>
+    <div class="menu-item" role="button" onclick="showView('view-upp-dinamico')">
+    <h3>Simulador Dinámico LPP</h3>
+    <p>Estado Tejido: <span id="home-val-upp-dinamico">Piel Sana</span></p>
+        
 </div>
 <div class="card-escala menu-item" onclick="showView('view-cefalo')" role="button" aria-label="Ir a Valoración Céfalo-Caudal">
             <div class="card-header-escala">
@@ -393,6 +401,45 @@
             ℹ️ <strong>Recordatorio Profesional:</strong> Registrar los hallazgos con claridad y terminología técnica exacta inmediatamente finalizada la valoración para asegurar la continuidad de cuidados en el pase de guardia.
         </div>
 
+    </div>
+</main>
+
+<main id="view-upp-dinamico" class="view">
+    <div class="card-escala">
+        <div class="card-header-escala">
+            <h2>Laboratorio de Isquemia Tisular (LPP)</h2>
+            <button class="btn-opcion" onclick="showView('view-home')">Volver</button>
+        </div>
+        
+        <div class="card-body-escala">
+            <p class="instruccion-simulador">👉 <strong>INSTRUCCIÓN PEDAGÓGICA:</strong> Mantenga presionado el dedo o el mouse sobre el círculo de piel para simular la presión del decúbito y observe la degradación celular cronológica.</p>
+            
+            <div class="campo-input">
+                <label>Seleccionar Prominencia Ósea de Riesgo:</label>
+                <div class="grupo-opciones">
+                    <button class="btn-opcion active" onclick="cambiarRegionAnatomica('sacro', this)">Región Sacra</button>
+                    <button class="btn-opcion" onclick="cambiarRegionAnatomica('talon', this)">Talón calcáneo</button>
+                    <button class="btn-opcion" onclick="cambiarRegionAnatomica('isquion', this)">Isquion (Sentado)</button>
+                </div>
+            </div>
+
+            <div class="contenedor-laboratorio-piel">
+                <div id="zona-piel-simulada" class="esfera-piel-tactil">
+                    <span id="upp-horas-reales">0 hs</span>
+                </div>
+                <div class="display-clinico-led">
+                    <h4 id="upp-fase-actual">Piel Sana</h4>
+                </div>
+            </div>
+
+            <div class="alert-box verde" id="info-fisiopatologica" style="margin-top:20px; display:block;">
+                <p id="upp-descripcion-clinica"><strong>Estado Fisiológico:</strong> Tejido íntegro. Perfusión capilar adecuada (Microcirculación conservada).</p>
+                <hr style="margin:10px 0; border:0; border-top:1px solid rgba(0,0,0,0.1);">
+                <p id="upp-accion-enfermeria"><strong>Plan de Cuidados:</strong> Mantener rotación cada 2 horas y protección con ácidos grasos hiperoxigenados.</p>
+            </div>
+
+            <button class="btn-reset-total" onclick="resetearSimuladorPiel()" style="margin-top: 15px;">Liberar Presión y Cambiar Sábanas</button>
+        </div>
     </div>
 </main>
 <button onclick="showView('view-home')" class="btn-flotante-home" title="Volver al Menú Principal" aria-label="Volver al inicio">

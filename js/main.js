@@ -5,6 +5,7 @@ import { inicializarBraden, calcularBraden, resetBraden } from './braden.js'; //
 import { actualizarLineaTiempoUI } from './utilidades.js';
 import { inicializarECG } from './ecg.js'; // <-- MÓDULO ECG
 import './cefalo.js'; // <--  MÓDULO DE VALORACIÓN CÉFALO-CAUDAL
+import './upp-dinamico.js'; // <--  MÓDULO DE ulceras por Presion
 
 // Inicialización de la aplicación al cargar la ventana
 window.onload = () => {
@@ -14,11 +15,14 @@ window.onload = () => {
     inicializarRass();   // <-- NUEVO
     inicializarBraden(); // <-- NUEVO
     inicializarECG(); // <-- NUEVA INICIALIZACIÓN DEL MONITOR ECG
+    window.inicializarSimuladorUPP(); //<-- llamo a la funcion para activar los sensores táctiles de la esfera de piel
     // Cargar visualmente las líneas de tiempo históricas
     actualizarLineaTiempoUI('GCS');
     actualizarLineaTiempoUI('IROX');
     actualizarLineaTiempoUI('RASS');   // <-- NUEVO
     actualizarLineaTiempoUI('Braden'); // <-- NUEVO
+
+     
 
     // Inyectar accesibilidad WCAG al teclado de forma dinámica en los menús interactivos div
     configurarAccesibilidadTeclado();

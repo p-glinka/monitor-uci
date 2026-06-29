@@ -483,3 +483,94 @@ h3 {
 .btn-contacto-footer:active {
     transform: translateY(1px);
 }
+/* =========================================================================================
+   /* =========================================================================================
+   🔬 ESTILOS: LABORATORIO INTERACTIVO DE LESIONES POR PRESIÓN (LPP) - FIX DE IMÁGENES
+   ========================================================================================= */
+
+.instruccion-simulador {
+    background-color: var(--azul-claro);
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--azul-oscuro);
+    margin-bottom: 20px;
+    border-left: 4px solid var(--azul-medio);
+}
+
+.contenedor-laboratorio-piel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+    background: #ffffff;
+    border: 1px solid var(--gris-borde);
+    border-radius: 12px;
+    margin: 15px 0;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+}
+
+/* Redondel clínico optimizado para forzar la visualización de la imagen */
+.esfera-piel-tactil {
+    width: 160px;
+    height: 160px;
+    border-radius: 50% !important; /* Fuerza la forma circular perfecta */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer;
+    user-select: none;
+    touch-action: none;
+    
+    /* Propiedades críticas de renderizado de fondo */
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    
+    /* Marco estético tipo lupa clínica */
+    border: 5px solid #ffffff !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15) !important;
+    transition: transform 0.15s ease, background-image 0.3s ease-in-out;
+    position: relative;
+}
+
+/* Filtro translúcido intermedio para asegurar el contraste del texto */
+.esfera-piel-tactil::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.2); /* Sombreado muy sutil para no tapar tu foto */
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.esfera-piel-tactil span {
+    font-weight: bold;
+    color: #ffffff !important;
+    font-size: 1.4rem;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.9); /* Sombra pesada para que resalte sobre la imagen */
+    z-index: 2;
+}
+
+/* Efecto de compresión mecánica */
+.esfera-piel-tactil.presionando {
+    transform: scale(0.92);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Pantalla LED */
+.display-clinico-led {
+    margin-top: 25px;
+    background: #2d3748;
+    color: #48bb78;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+    max-width: 340px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+}
