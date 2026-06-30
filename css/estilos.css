@@ -574,3 +574,62 @@ h3 {
     max-width: 340px;
     box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
 }
+/* =========================================================================================
+  /* =========================================================================================
+  /* =========================================================================================
+   🎨 INTERFAZ GRÁFICA VIVA: MONITOR ECG EMBEDIDO EN BOTÓN HOME
+   ========================================================================================= */
+
+.btn-home-ecg-interactivo {
+    position: relative !important;
+    overflow: hidden !important; /* Recorta el trazado para que no se escape de las esquinas */
+    cursor: pointer;
+}
+
+#mini-canvas-ecg-home {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+    pointer-events: none; /* Permite que el click pase al botón */
+    opacity: 0.6; /* Control de contraste para que se lea el texto encima */
+    background: #1a202c !important; /* Fondo oscuro de monitor de terapia */
+}
+
+.contenido-btn-interno {
+    position: relative !important;
+    z-index: 2 !important; /* Fuerza al texto a flotar sobre la línea del electro */
+    pointer-events: none;
+    width: 100%;
+}
+
+/* Modificación estética para que el texto resalte en blanco sobre el monitor oscuro */
+.btn-home-ecg-interactivo h3, 
+.btn-home-ecg-interactivo p {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+/* Asegura que el canvas sea visible dentro de la tarjeta del menú */
+.btn-home-ecg-interactivo {
+    position: relative !important;
+    overflow: hidden !important;
+    background: #1a202c !important; /* Fuerza el fondo oscuro de monitor */
+}
+
+#mini-canvas-ecg-home {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+    display: block !important;
+}
+
+.contenido-btn-interno {
+    position: relative !important;
+    z-index: 2 !important; /* El texto vuela por encima de la línea verde */
+    color: #ffffff !important;
+}

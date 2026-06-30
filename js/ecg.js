@@ -234,3 +234,85 @@ window.cambiarRitmoECG = function(tipo, elemento) {
         });
     }
 }
+// =========================================================================================
+// ⚡ MINI-MONITOR ECG EN VIVO PARA EL BOTÓN DEL HOME (RENDERIZADO CONTINUO INTEGRADO)
+// Dibuja un trazado fisiológico sutil en miniatura usando la misma tasa de refresco
+// =========================================================================================
+
+let miniCanvas = null;
+let miniCtx = null;
+let miniX = 0;
+let miniUltimaY = 40; // Centrado verticalmente en base al tamaño del botón
+let miniIteracion = 0;
+
+// Esta función será llamada desde el inicio para activar el motor gráfico en el botón
+// =========================================================================================
+// ⚡ MOTOR GRÁFICO SECUNDARIO: RENDERIZADOR ASINCRÓNICO PARA EL MENÚ PRINCIPAL
+// =========================================================================================
+
+function inicializarMiniECGHome() {
+    miniCanvas = document.getElementById('mini-canvas-ecg-home');
+    if (!miniCanvas) return;
+
+    miniCtx = miniCanvas.getContext('2d');
+    
+    // Si el offset es 0 por estar oculto, le asignamos un tamaño base por defecto
+    miniCanvas.width = miniCanvas.offsetWidth || 300;
+    miniCanvas.height = miniCanvas.offsetHeight || 140;
+
+    // Sincronizamos la variable de altura inicial a la mitad exacta del lienzo
+    miniUltimaY = miniCanvas.height / 2;
+
+    // Encendemos el ciclo de animación a 60 FPS
+    renderMiniBarridoECG();
+}
+
+function renderMiniBarridoECG() {
+    if (!miniCanvas || !miniCtx) return;
+
+    // Simulación del complejo QRS en miniatura adaptado al tamaño del botón
+    let actualY = miniCanvas.height / 2; // Línea isoeléctrica base
+    miniIteracion++;
+
+    // Ciclo matemático de ondas cardíacas P-QRS-T comprimido para el botón
+    let fase = miniIteracion % 40; 
+    if (fase === 10) actualY -= 4;   // Onda P sutil
+    if (fase === 14) actualY += 6;   // Onda Q
+    if (fase === 16) actualY -= 28;  // R de alta tensión (El latido)
+    if (fase === 18) actualY += 12;  // Onda S profunda
+    if (fase === 24) actualY -= 6;   // Onda T de repolarización Ventricular
+
+    // Efecto de desvanecimiento progresivo (Estilo fósforo verde de monitor UCI)
+    miniCtx.fillStyle = 'rgba(247, 250, 252, 0.08)'; // Fondo gris/blanco sutil que limpia la línea anterior
+    miniCtx.fillRect(miniX, 0, 8, miniCanvas.height);
+
+    // Configuración estética de la línea del electro dentro del botón
+    miniCtx.strokeStyle = '#38a169'; // Verde alerta institucional de salud
+    miniCtx.lineWidth = 1.8;
+    miniCtx.lineCap = 'round';
+    miniCtx.shadowBlur = 0; // Sin brillo excesivo para que no tape el texto del botón
+
+    // Dibujo del vector en el plano cartesiano del canvas
+    miniCtx.beginPath();
+    miniCtx.moveTo(miniX - 1, miniUltimaY);
+    miniCtx.lineTo(miniX, actualY);
+    miniCtx.stroke();
+
+    miniUltimaY = actualY;
+    miniX += 1.2; // Velocidad del barrido horizontal
+
+    // Ciclo infinito: cuando la línea llega al borde derecho del botón, vuelve a empezar por la izquierda
+    if (miniX >= miniCanvas.width) {
+        miniX = 0;
+    }
+
+    requestAnimationFrame(renderMiniBarridoECG);
+}
+
+// 🌐 EXPOSICIÓN EN EL INICIALIZADOR EXISTENTE
+// Buscá tu función existente "inicializarECG" y agregá este llamado al final
+const copiaInicializarECGOriginal = window.inicializarECG;
+window.inicializarECG = function() {
+    if (typeof copiaInicializarECGOriginal === 'function') copiaInicializarECGOriginal();
+    inicializarMiniECGHome(); // Encendemos el mini monitor del home
+};

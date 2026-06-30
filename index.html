@@ -44,16 +44,19 @@
                 <p>Valor Actual: <span id="home-val-braden">23</span>/23</p>
             </div>
 
-            <div class="card-escala menu-item" onclick="showView('view-ecg')" role="button" aria-label="Ir al simulador de Ritmos Cardíacos">
-            <div class="card-header-escala">
-            <h3> Ritmos Cardíacos</h3>
-            <span class="badge-valor" id="home-val-ecg"></span>
-            <div class="menu-item" role="button" onclick="showView('view-upp-dinamico')">
-            </div>
-            </div>
-    <div class="card-body-escala">
+        
+<!-- BOTÓN DEL MENÚ HOME CON ECG EN VIVO INTERIOR -->
+<div class="menu-item btn-home-ecg-interactivo" role="button" onclick="showView('view-ecg')">
+    <!-- ⚡ El lienzo del mini electro que va a correr de fondo -->
+    <canvas id="mini-canvas-ecg-home"></canvas>
+    
+    <!-- 📝 El texto y contenido por encima del ECG -->
+    <div class="contenido-btn-interno">
+        <h3>Ritmos Cardíacos</h3>
         <p>Trazados electrocardiográficos</p>
+        <span class="badge-valor" id="home-val-ecg">🟢</span>
     </div>
+</div>
 </div>
     <div class="menu-item" role="button" onclick="showView('view-upp-dinamico')">
     <h3>Simulador Dinámico LPP</h3>

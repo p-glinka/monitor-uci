@@ -15,6 +15,75 @@ window.onload = () => {
     inicializarRass();   // <-- NUEVO
     inicializarBraden(); // <-- NUEVO
     inicializarECG(); // <-- NUEVA INICIALIZACIÓN DEL MONITOR ECG
+    // =========================================================================================
+// ⚡ MOTOR INTERNO: TRAZADO ECG EN VIVO PARA EL BOTÓN DEL HOME
+// =========================================================================================
+(function() {
+    let miniCanvas = null;
+    let miniCtx = null;
+    let miniX = 0;
+    let miniUltimaY = 50;
+    let miniIteracion = 0;
+
+    function arrancarMiniECG() {
+        miniCanvas = document.getElementById('mini-canvas-ecg-home');
+        if (!miniCanvas) return;
+
+        miniCtx = miniCanvas.getContext('2d');
+        
+        // Forzamos el tamaño físico real del contenedor
+        miniCanvas.width = miniCanvas.getBoundingClientRect().width || 300;
+        miniCanvas.height = miniCanvas.getBoundingClientRect().height || 140;
+        miniUltimaY = miniCanvas.height / 2;
+
+        function dibujarMiniTrazado() {
+            if (!miniCanvas || !miniCtx) return;
+
+            let actualY = miniCanvas.height / 2;
+            miniIteracion++;
+
+            // Complejo P-QRS-T adaptado al tamaño de la tarjeta
+            let fase = miniIteracion % 50; 
+            if (fase === 12) actualY -= 5;   // Onda P
+            if (fase === 16) actualY += 8;   // Onda Q
+            if (fase === 18) actualY -= 35;  // Onda R (Latido alto)
+            if (fase === 20) actualY += 15;  // Onda S
+            if (fase === 26) actualY -= 8;   // Onda T
+
+            // Efecto barrido de monitor de terapia (deja rastro verde)
+            miniCtx.fillStyle = 'rgba(26, 32, 44, 0.12)'; 
+            miniCtx.fillRect(miniX, 0, 10, miniCanvas.height);
+
+            // Estética de la línea del electro
+            miniCtx.strokeStyle = '#38a169'; // Verde quirúrgico
+            miniCtx.lineWidth = 2;
+            miniCtx.lineCap = 'round';
+
+            miniCtx.beginPath();
+            miniCtx.moveTo(miniX - 1, miniUltimaY);
+            miniCtx.lineTo(miniX, actualY);
+            miniCtx.stroke();
+
+            miniUltimaY = actualY;
+            miniX += 1.5;
+
+            if (miniX >= miniCanvas.width) {
+                miniX = 0;
+            }
+
+            requestAnimationFrame(dibujarMiniTrazado);
+        }
+
+        dibujarMiniTrazado();
+    }
+
+    // Acoplamos la ejecución al flujo de carga general para asegurar que el botón ya exista
+    if (document.readyState === 'complete') {
+        arrancarMiniECG();
+    } else {
+        window.addEventListener('load', arrancarMiniECG);
+    }
+})();
     window.inicializarSimuladorUPP(); //<-- llamo a la funcion para activar los sensores táctiles de la esfera de piel
     // Cargar visualmente las líneas de tiempo históricas
     actualizarLineaTiempoUI('GCS');
