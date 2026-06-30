@@ -633,3 +633,49 @@ h3 {
     z-index: 2 !important; /* El texto vuela por encima de la línea verde */
     color: #ffffff !important;
 }
+/* =========================================================================================
+   🌐 ARQUITECTURA VISUAL: FOOTER INSTITUCIONAL UNIFICADO
+   ========================================================================================= */
+
+.footer-sistema-unificado {
+    margin-top: 50px;
+    padding: 25px 20px;
+    background-color: #f8fafc; /* Gris ultra claro médico */
+    border-top: 1px solid var(--gris-borde, #e2e8f0);
+    text-align: center;
+    width: 100%;
+    clear: both;
+}
+
+.footer-contenido-principal p {
+    margin: 4px 0;
+    color: #4a5568; /* Gris oscuro legible */
+    font-size: 0.9rem;
+}
+
+.footer-autoría {
+    font-weight: 600;
+    color: #2d3748 !important;
+}
+
+.divisor-footer {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 15px auto;
+    width: 60%;
+    max-width: 400px;
+}
+
+/* Reducción y estilización del texto del descargo de responsabilidad */
+.footer-aviso-legal {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.footer-aviso-legal p {
+    font-size: 0.72rem !important; /* Letra bien chica y discreta */
+    line-height: 1.4;
+    color: #718096 !important; /* Gris atenuado secundario */
+    text-align: justify; /* Alineación limpia tipo documento legal */
+}

@@ -22,58 +22,53 @@
     </header>
     <main id="view-home" class="view active">
         <h2 style="margin-bottom: 15px; font-size: 1.2rem; color: #1a365d;">Monitoreo Crítico</h2>
-        <div class="menu-grid">
+      <div class="menu-grid">
             
-            <div class="menu-item" role="button" onclick="showView('view-gcs')">
-                <h3>Escala de Glasgow (GCS)</h3>
-                <p>Valor Actual: <span id="home-val-gcs">15</span>/15</p>
-            </div>
-            
-            <div class="menu-item" role="button" onclick="showView('view-irox')">
-                <h3>Índice IROX (CNAF)</h3>
-                <p>Valor Actual: <span id="home-val-irox">0.00</span></p>
-            </div>
-
-            <div class="menu-item" role="button" onclick="showView('view-rass')">
-                <h3>Escala RASS (Sedación)</h3>
-                <p>Valor Actual: <span id="home-val-rass">0</span></p>
-            </div>
-
-            <div class="menu-item" role="button" onclick="showView('view-braden')">
-                <h3>Escala Braden (UPP)</h3>
-                <p>Valor Actual: <span id="home-val-braden">23</span>/23</p>
-            </div>
-
-        
-<!-- BOTÓN DEL MENÚ HOME CON ECG EN VIVO INTERIOR -->
-<div class="menu-item btn-home-ecg-interactivo" role="button" onclick="showView('view-ecg')">
-    <!-- ⚡ El lienzo del mini electro que va a correr de fondo -->
-    <canvas id="mini-canvas-ecg-home"></canvas>
-    
-    <!-- 📝 El texto y contenido por encima del ECG -->
-    <div class="contenido-btn-interno">
-        <h3>Ritmos Cardíacos</h3>
-        <p>Trazados electrocardiográficos</p>
-        <span class="badge-valor" id="home-val-ecg">🟢</span>
+    <div class="menu-item" role="button" onclick="showView('view-gcs')">
+        <h3>Escala de Glasgow (GCS)</h3>
+        <p>Valor Actual: <span id="home-val-gcs">15</span>/15</p>
     </div>
-</div>
-</div>
-    <div class="menu-item" role="button" onclick="showView('view-upp-dinamico')">
-    <h3>Simulador Dinámico LPP</h3>
-    <p>Estado Tejido: <span id="home-val-upp-dinamico">Piel Sana</span></p>
-        
-</div>
-<div class="card-escala menu-item" onclick="showView('view-cefalo')" role="button" aria-label="Ir a Valoración Céfalo-Caudal">
-            <div class="card-header-escala">
-                <h3>Céfalo-Caudal</h3>
-                <span class="badge-valor" id="home-val-cefalo"></span>
-            </div>
-            <div class="card-body-escala">
-                <p>Examen físico Cefalo Caudal </p>
-            </div>
-        </div>
+    
+    <div class="menu-item" role="button" onclick="showView('view-irox')">
+        <h3>Índice IROX (CNAF)</h3>
+        <p>Valor Actual: <span id="home-val-irox">0.00</span></p>
+    </div>
 
-    </div> 
+    <div class="menu-item" role="button" onclick="showView('view-rass')">
+        <h3>Escala RASS (Sedación)</h3>
+        <p>Valor Actual: <span id="home-val-rass">0</span></p>
+    </div>
+
+    <div class="menu-item" role="button" onclick="showView('view-braden')">
+        <h3>Escala Braden (UPP)</h3>
+        <p>Valor Actual: <span id="home-val-braden">23</span>/23</p>
+    </div>
+
+    <div class="menu-item btn-home-ecg-interactivo" role="button" onclick="showView('view-ecg')">
+        <canvas id="mini-canvas-ecg-home"></canvas>
+        
+        <div class="contenido-btn-interno">
+            <h3>Ritmos Cardíacos</h3>
+            <p>Trazados electrocardiográficos</p>
+            <span class="badge-valor" id="home-val-ecg">🟢</span>
+        </div>
+    </div> <div class="menu-item" role="button" onclick="showView('view-upp-dinamico')">
+        <h3>Simulador Dinámico LPP</h3>
+        <p>Estado Tejido: <span id="home-val-upp-dinamico">Piel Sana</span></p>
+    </div>
+
+    <div class="card-escala menu-item" onclick="showView('view-cefalo')" role="button" aria-label="Ir a Valoración Céfalo-Caudal">
+        <div class="card-header-escala">
+            <h3>Céfalo-Caudal</h3>
+            <span class="badge-valor" id="home-val-cefalo"></span>
+        </div>
+        <div class="card-body-escala">
+            <p>Examen físico Céfalo Caudal</p>
+        </div>
+    </div>
+
+</div> ```
+
         <button class="btn-reset-total" onclick="resetearTodoElSistema()">Resetear Paciente Actual</button>
     </main>
 
@@ -448,25 +443,26 @@
 <button onclick="showView('view-home')" class="btn-flotante-home" title="Volver al Menú Principal" aria-label="Volver al inicio">
     📋
 </button>
-<!-- PIE DE PÁGINA  (FOOTER) -->
-    <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid #cbd5e0; background-color: #1a365d; color: white;">
-        <p style="font-size: 0.9rem; margin: 0; font-weight: 500;">
-            © 2026
-        </p>
-        <p style="font-size: 0.75rem; color: #a0aec0; margin-top: 5px; font-style: italic;">
-            Plataforma interactiva con fines exclusivamente educativos y de simulación clínica. No debe ser utilizada para el diagnóstico, tratamiento o toma de decisiones clínicas en entornos de salud reales."
-        </p>
+
        <footer style="background-color: #1a365d; color: white; text-align: center; padding: 20px 10px; margin-top: 40px; border-top: 3px solid #2b6cb0;">
     
-    <a href="mailto:glinkapaulogerman@gmail.com?subject=Consulta%20-%20Asistente%20de%20Valoración%20Enfermería" class="btn-contacto-footer">
+   
+    </footer>
+        </footer>
+
+        </div> <footer class="footer-sistema-unificado">
+        <div class="footer-contenido-principal">
+            <p>© 2026. Todos los derechos reservados.</p>
+            <p class="footer-aviso-legal">Desarrollado por Paulo Glinka </p>
+             <a href="mailto:glinkapaulogerman@gmail.com?subject=Consulta%20-%20Asistente%20de%20Valoración%20Enfermería" class="btn-contacto-footer">
         ✉️ CONTACTO
     </a>
-</footer>
+        </div>
+        <hr class="divisor-footer">
+        <div class="footer-aviso-legal">
+            <p><strong>Aviso Clínico Importante:</strong> Esta plataforma interactiva es una herramienta estrictamente educativa y de simulación para profesionales y estudiantes de enfermería. Los algoritmos, trazados y escalas automatizadas están basados en directrices internacionales (NPUAP/EPUAP, GCS, RASS, IROX) vigentes a 2026 y no reemplazan bajo ninguna circunstancia el juicio clínico, la valoración directa al pie de cama ni los protocolos asistenciales institucionales de su centro de salud.</p>
+        </div>
     </footer>
-    <footer>
-  <p>© 2026 Monitor UCI - Todos los derechos reservados.</p>
-  <p><strong>Aviso de exención de responsabilidad:</strong> Esta plataforma es un simulador digital interactivo con fines estrictamente didácticos y pedagógicos. No es un dispositivo médico ni software de diagnóstico. El autor no se responsabiliza por errores de interpretación clínica, fallas técnicas en el dispositivo del usuario, ni por decisiones operativas o de tratamiento tomadas en entornos de salud reales basadas en el uso de esta aplicación.</p>
-</footer>
 
 
     <!--  BOTÓN HOME CON EFECTO REBOTE Y SOMBRA DE CONTORNO -->

@@ -235,7 +235,7 @@ window.cambiarRitmoECG = function(tipo, elemento) {
     }
 }
 // =========================================================================================
-// ⚡ MINI-MONITOR ECG EN VIVO PARA EL BOTÓN DEL HOME (RENDERIZADO CONTINUO INTEGRADO)
+//  MINI-MONITOR ECG EN VIVO PARA EL BOTÓN DEL HOME (RENDERIZADO CONTINUO INTEGRADO)
 // Dibuja un trazado fisiológico sutil en miniatura usando la misma tasa de refresco
 // =========================================================================================
 
@@ -247,7 +247,7 @@ let miniIteracion = 0;
 
 // Esta función será llamada desde el inicio para activar el motor gráfico en el botón
 // =========================================================================================
-// ⚡ MOTOR GRÁFICO SECUNDARIO: RENDERIZADOR ASINCRÓNICO PARA EL MENÚ PRINCIPAL
+//  MOTOR GRÁFICO SECUNDARIO: RENDERIZADOR ASINCRÓNICO PARA EL MENÚ PRINCIPAL
 // =========================================================================================
 
 function inicializarMiniECGHome() {
@@ -309,8 +309,8 @@ function renderMiniBarridoECG() {
     requestAnimationFrame(renderMiniBarridoECG);
 }
 
-// 🌐 EXPOSICIÓN EN EL INICIALIZADOR EXISTENTE
-// Buscá tu función existente "inicializarECG" y agregá este llamado al final
+//  EXPOSICIÓN EN EL INICIALIZADOR EXISTENTE
+
 const copiaInicializarECGOriginal = window.inicializarECG;
 window.inicializarECG = function() {
     if (typeof copiaInicializarECGOriginal === 'function') copiaInicializarECGOriginal();
