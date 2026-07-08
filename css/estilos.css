@@ -679,3 +679,38 @@ h3 {
     color: #718096 !important; /* Gris atenuado secundario */
     text-align: justify; /* Alineación limpia tipo documento legal */
 }
+.resultado-card {
+    border-left: 6px solid #b0bec5;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+}
+
+.resultado-card.estado-espera {
+    border-left-color: #cfd8dc;
+    opacity: 0.7;
+}
+
+/* Colores de la paleta según severidad clínica */
+.resultado-card.estado-estable {
+    border-left-color: #2e7d32; /* Verde Médico */
+    background-color: #edf7ed;
+}
+
+.resultado-card.estado-alerta {
+    border-left-color: #f57c00; /* Naranja Alerta */
+    background-color: #fff3e0;
+}
+
+.resultado-card.estado-critico {
+    border-left-color: #c62828; /* Rojo Crítico */
+    background-color: #ffebee;
+}
+
+.resultado-numero {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+}

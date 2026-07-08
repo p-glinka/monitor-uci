@@ -22,52 +22,62 @@
     </header>
     <main id="view-home" class="view active">
         <h2 style="margin-bottom: 15px; font-size: 1.2rem; color: #1a365d;">Monitoreo Crítico</h2>
-      <div class="menu-grid">
+    <div class="menu-grid">
             
-    <div class="menu-item" role="button" onclick="showView('view-gcs')">
-        <h3>Escala de Glasgow (GCS)</h3>
-        <p>Valor Actual: <span id="home-val-gcs">15</span>/15</p>
-    </div>
+        <div class="menu-item" role="button" onclick="showView('view-gcs')">
+            <h3>Escala de Glasgow (GCS)</h3>
+            <p>Valor Actual: <span id="home-val-gcs">15</span>/15</p>
+        </div>
     
-    <div class="menu-item" role="button" onclick="showView('view-irox')">
+        <div class="menu-item" role="button" onclick="showView('view-irox')">
         <h3>Índice IROX (CNAF)</h3>
         <p>Valor Actual: <span id="home-val-irox">0.00</span></p>
-    </div>
+        </div>
 
-    <div class="menu-item" role="button" onclick="showView('view-rass')">
-        <h3>Escala RASS (Sedación)</h3>
-        <p>Valor Actual: <span id="home-val-rass">0</span></p>
-    </div>
+        <div class="menu-item" role="button" onclick="showView('view-rass')">
+            <h3>Escala RASS (Sedación)</h3>
+                <p>Valor Actual: <span id="home-val-rass">0</span></p>
+            </div>
 
-    <div class="menu-item" role="button" onclick="showView('view-braden')">
-        <h3>Escala Braden (UPP)</h3>
-        <p>Valor Actual: <span id="home-val-braden">23</span>/23</p>
-    </div>
+        <div class="menu-item" role="button" onclick="showView('view-braden')">
+            <h3>Escala Braden (UPP)</h3>
+            <p>Valor Actual: <span id="home-val-braden">23</span>/23</p>
+        </div>
 
-    <div class="menu-item btn-home-ecg-interactivo" role="button" onclick="showView('view-ecg')">
-        <canvas id="mini-canvas-ecg-home"></canvas>
+        <div class="menu-item btn-home-ecg-interactivo" role="button" onclick="showView('view-ecg')">
+            <canvas id="mini-canvas-ecg-home"></canvas>
         
-        <div class="contenido-btn-interno">
-            <h3>Ritmos Cardíacos</h3>
-            <p>Trazados electrocardiográficos</p>
-            <span class="badge-valor" id="home-val-ecg">🟢</span>
+            <div class="contenido-btn-interno">
+                <h3>Ritmos Cardíacos</h3>
+                <p>Trazados electrocardiográficos</p>
+                <span class="badge-valor" id="home-val-ecg">🟢</span>
+            </div>
+        </div> <div class="menu-item" role="button" onclick="showView('view-upp-dinamico')">
+            <h3>Simulador Dinámico LPP</h3>
+            <p>Estado Tejido: <span id="home-val-upp-dinamico">Piel Sana</span></p>
         </div>
-    </div> <div class="menu-item" role="button" onclick="showView('view-upp-dinamico')">
-        <h3>Simulador Dinámico LPP</h3>
-        <p>Estado Tejido: <span id="home-val-upp-dinamico">Piel Sana</span></p>
+
+        <div class="card-escala menu-item" onclick="showView('view-cefalo')" role="button" aria-label="Ir a Valoración Céfalo-Caudal">
+            <div class="card-header-escala">
+                <h3>Céfalo-Caudal</h3>
+                <span class="badge-valor" id="home-val-cefalo"></span>
+            </div>
+            <div class="card-body-escala">
+                <p>Examen físico Céfalo Caudal</p>
+            </div>
+            </div>
+
+            <!-- CAJA/CUADRADO DEL MÓDULO NISS -->
+
+        <div class="menu-item" role="button" onclick="showView('view-niss')">
+            <h3>Escala NISS (Neuro UCI)</h3>
+            <p>Valor Actual: <span id="home-val-niss">--</span> pts</p>
+        </div>
+</div> <!-- Cierre del módulo principal cuadrado -->
     </div>
 
-    <div class="card-escala menu-item" onclick="showView('view-cefalo')" role="button" aria-label="Ir a Valoración Céfalo-Caudal">
-        <div class="card-header-escala">
-            <h3>Céfalo-Caudal</h3>
-            <span class="badge-valor" id="home-val-cefalo"></span>
-        </div>
-        <div class="card-body-escala">
-            <p>Examen físico Céfalo Caudal</p>
-        </div>
-    </div>
+</div> 
 
-</div> ```
 
         <button class="btn-reset-total" onclick="resetearTodoElSistema()">Resetear Paciente Actual</button>
     </main>
@@ -440,6 +450,71 @@
         </div>
     </div>
 </main>
+
+<section id="view-niss" class="view">
+    <h2>Evaluación Avanzada: Escala NISS</h2>
+    
+    <div id="niss-desarrollo-formulario" class="desarrollo-modulo">
+        <form id="niss-form" class="calculadora-form">
+            <!-- Variable 1: Respuesta Motora -->
+            <div class="criterio-grupo">
+                <h3>1. Respuesta Motora (Mejor miembro)</h3>
+                <div class="opciones-lista">
+                    <label class="opcion-item"><input type="radio" name="motora" value="6" required><span>Obedece órdenes verbales (6 pts)</span></label>
+                    <label class="opcion-item"><input type="radio" name="motora" value="5"><span>Localiza el estímulo doloroso (5 pts)</span></label>
+                    <label class="opcion-item"><input type="radio" name="motora" value="4"><span>Retirada al dolor / Flexión normal (4 pts)</span></label>
+                    <label class="opcion-item"><input type="radio" name="motora" value="3"><span>Decorticación / Flexión anormal (3 pts)</span></label>
+                    <label class="opcion-item"><input type="radio" name="motora" value="2"><span>Descerebración / Extensión anómala (2 pts)</span></label>
+                    <label class="opcion-item"><input type="radio" name="motora" value="1"><span>Sin respuesta motora / Flacidez (1 pt)</span></label>
+                </div>
+            </div>
+
+            <!-- Variable 2: Reflejos del Tronco Encefálico -->
+            <div class="criterio-grupo">
+                <h3>2. Reflejos del Tronco Encefálico</h3>
+                <div class="opciones-lista">
+                    <label class="opcion-item"><input type="radio" name="tronco" value="3" required><span>Fotomotor y Corneano presentes (3 pts)</span></label>
+                    <label class="opcion-item"><input type="radio" name="tronco" value="2"><span>Un reflejo ausente uni o bilateral (2 pts)</span></label>
+                    <label class="opcion-item"><input type="radio" name="tronco" value="1"><span>Ambos reflejos ausentes unilateralmente (1 pt)</span></label>
+                    <label class="opcion-item"><input type="radio" name="tronco" value="0"><span>Ausencia total de reflejos de tronco (0 pts)</span></label>
+                </div>
+            </div>
+
+            <!-- Variable 3: Reactividad Pupilar -->
+            <div class="criterio-grupo">
+                <h3>3. Reactividad Pupilar</h3>
+                <div class="opciones-lista">
+                    <label class="opcion-item"><input type="radio" name="pupilas" value="2" required><span>Isocóricas y reactivas (2 pts)</span></label>
+                    <label class="opcion-item"><input type="radio" name="pupilas" value="1"><span>Anisocoria o midriasis unilateral (1 pt)</span></label>
+                    <label class="opcion-item"><input type="radio" name="pupilas" value="0"><span>Midriasis bilateral paralítica (0 pts)</span></label>
+                </div>
+            </div>
+
+            <!-- Variable 4: Patrón Respiratorio -->
+            <div class="criterio-grupo">
+                <h3>4. Patrón Respiratorio</h3>
+                <div class="opciones-lista">
+                    <label class="opcion-item"><input type="radio" name="respiracion" value="2" required><span>Normal, regular o adaptado a ARM (2 pts)</span></label>
+                    <label class="opcion-item"><input type="radio" name="respiracion" value="1"><span>Patrón central anormal (1 pt)</span></label>
+                    <label class="opcion-item"><input type="radio" name="respiracion" value="0"><span>Respiración apnéustica, atáxica o apnea (0 pts)</span></label>
+                </div>
+            </div>
+        </form>
+
+        <div id="niss-resultado-card" class="resultado-card estado-espera" style="margin-top:20px; padding:15px; border-radius:6px; background:#f7fafc;">
+            <div class="resultado-header">
+                <span class="resultado-label">PUNTUACIÓN TOTAL NISS</span>
+                <div id="niss-score" class="resultado-numero" style="font-size:2rem; font-weight:bold;">--</div>
+            </div>
+            <div class="resultado-cuerpo">
+                <h4 id="niss-interpretacion-titulo">Seleccione todas las variables</h4>
+                <p id="niss-interpretacion-txt">Complete la evaluación clínica para ver el informe.</p>
+            </div>
+        </div>
+
+     <!--   <div class="bibliografia-contenedor-unificado" id="biblio-niss" style="margin-top:20px;"></div>
+    </div> -->
+</section>
 <button onclick="showView('view-home')" class="btn-flotante-home" title="Volver al Menú Principal" aria-label="Volver al inicio">
     📋
 </button>
@@ -455,7 +530,7 @@
         </div> <footer class="footer-sistema-unificado">
         <div class="footer-contenido-principal">
             <p>© 2026. Todos los derechos reservados.</p>
-            <p class="footer-aviso-legal">Desarrollado por Paulo Glinka </p>
+            <p class="footer-aviso-legal">Desarrollado por Paulo Glinka / </p>
         </div>
         <hr class="divisor-footer">
         <div class="footer-aviso-legal">

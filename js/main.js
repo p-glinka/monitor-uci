@@ -1,20 +1,21 @@
 import { inicializarGlasgow, calcularGlasgow, resetGlasgow } from './glasgow.js';
 import { calcIrox, inicializarIrox, resetIrox } from './irox.js';
-import { inicializarRass, calcularRass, resetRass } from './rass.js'; // <--
-import { inicializarBraden, calcularBraden, resetBraden } from './braden.js'; // <-- 
+import { inicializarRass, calcularRass, resetRass } from './rass.js'; 
+import { inicializarBraden, calcularBraden, resetBraden } from './braden.js';  
+import { inicializarNiss, resetNiss } from './niss.js'; // <-- Agregue el reset al import
 import { actualizarLineaTiempoUI } from './utilidades.js';
-import { inicializarECG } from './ecg.js'; // <-- MÓDULO ECG
-import './cefalo.js'; // <--  MÓDULO DE VALORACIÓN CÉFALO-CAUDAL
-import './upp-dinamico.js'; // <--  MÓDULO DE ulceras por Presion
+import { inicializarECG } from './ecg.js'; 
+import './cefalo.js'; 
+import './upp-dinamico.js'; 
 
-// Inicialización de la aplicación al cargar la ventana
 window.onload = () => {
-    // Arrancar la persistencia de datos local
     inicializarGlasgow();
     inicializarIrox();
-    inicializarRass();   // <-- NUEVO
-    inicializarBraden(); // <-- NUEVO
-    inicializarECG(); // <-- NUEVA INICIALIZACIÓN DEL MONITOR ECG
+    inicializarRass();   
+    inicializarBraden(); 
+    inicializarNiss();   // <-- Arranca de forma independiente en el front
+    inicializarECG(); 
+
     // =========================================================================================
 // ⚡ MOTOR INTERNO: TRAZADO ECG EN VIVO PARA EL BOTÓN DEL HOME
 // =========================================================================================
@@ -97,7 +98,7 @@ window.onload = () => {
     configurarAccesibilidadTeclado();
 };
 
-// Exponer funciones críticas al objeto global window para que sigan respondiendo a tus onclick del HTML
+// Exponer funciones críticas al objeto global window para que sigan respondiendo a los onclick del HTML
 window.calcularGlasgow = calcularGlasgow;
 window.calcIrox = calcIrox;
 window.calcularRass = calcularRass;   // <-- NUEVO
@@ -116,6 +117,8 @@ window.resetearTodoElSistema = function() {
         resetIrox();
         resetRass();   // <-- NUEVO
         resetBraden(); // <-- NUEVO
+        resetNiss();
+
         window.showView('view-home');
     }
 };
