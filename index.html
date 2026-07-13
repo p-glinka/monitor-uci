@@ -78,7 +78,7 @@
 </div> <!-- Cierre del módulo principal cuadrado -->
 <!-- index.html - Módulo Vademécum PROA Corregido -->
         <div class="buscador-container">
-            <h2>Vademécum PROA</h2>
+            <h2>Vademécum</h2>
             <div class="search-box">
                 <input type="text" id="input-busqueda" placeholder="Ej: Meropenem, convulsiones, SF...">
                 <button id="btn-buscar">Buscar</button>
@@ -460,6 +460,9 @@
     </div>
 </main>
 
+<!-- =========================================================================================
+     SECCIÓN: EVALUACIÓN AVANZADA NISS
+     ========================================================================================= -->
 <section id="view-niss" class="view">
     <h2>Evaluación Avanzada: Escala NISS</h2>
     
@@ -520,117 +523,82 @@
                 <p id="niss-interpretacion-txt">Complete la evaluación clínica para ver el informe.</p>
             </div>
         </div>
-
-     <!--   <div class="bibliografia-contenedor-unificado" id="biblio-niss" style="margin-top:20px;"></div>
-    </div> -->
-
-    <!-- VISTA INDEPENDIENTE DEL VADEMÉCUM PROA -->
-<div id="view-vademecum" class="view" style="display: none;">
-    <!-- Encabezado con botón para volver al Home -->
-    <div class="header-vista">
-        <button class="btn-volver" onclick="showView('view-home')">← Volver al Home</button>
-        <h2>Vademécum PROA</h2>
     </div>
-
-    <div class="contenido-modulo">
-        <!-- Caja de Búsqueda Estilizada -->
-        <div class="buscador-container">
-            <p class="instruccion-busqueda">Buscá por fármaco, indicación o dilución:</p>
-            <div class="search-box">
-                <!-- Cambiamos los id por clases o añadimos un sufijo para diferenciarlos -->
-        <input type="text" id="input-busqueda-vademecum" placeholder="Ej: Meropenem, convulsiones, SF...">
-        <button id="btn-buscar-vademecum" class="btn-buscar-proa">Buscar</button>
-    <div id="contenedor-tarjetas-vademecum" class="grid-vademecum"></div>
-    </div>
-</div>
 </section>
-<button onclick="showView('view-home')" class="btn-flotante-home" title="Volver al Menú Principal" aria-label="Volver al inicio">
-    📋
-</button>
 
-       <footer style="background-color: #1a365d; color: white; text-align: center; padding: 20px 10px; margin-top: 40px; border-top: 3px solid #2b6cb0;">
-    
-   <a href="mailto:glinkapaulogerman@gmail.com?subject=Consulta%20-%20Asistente%20de%20Valoración%20Enfermería" class="btn-contacto-footer">
-        ✉️ CONTACTO
-    </a>
-    </footer>
-        </footer>
+<!-- Botón Flotante para regresar al Menú Principal -->
+<div class="contenedor-home-nuevo">
+    <button onclick="showView('view-home')" title="Volver al Menú Principal" aria-label="Volver al inicio">
+        📋
+    </button>
+</div>
 
-        </div> <footer class="footer-sistema-unificado">
-        <div class="footer-contenido-principal">
-            <p>© 2026. Todos los derechos reservados.</p>
-            <p class="footer-aviso-legal">Desarrollado por Paulo Glinka / </p>
-        </div>
-        <hr class="divisor-footer">
-        <div class="footer-aviso-legal">
-            <p><strong>Aviso Clínico Importante:</strong> Esta plataforma interactiva es una herramienta estrictamente educativa y de simulación para profesionales y estudiantes de enfermería. Los algoritmos, trazados y escalas automatizadas están basados en directrices internacionales (NPUAP/EPUAP, GCS, RASS, IROX) vigentes a 2026 y no reemplazan bajo ninguna circunstancia el juicio clínico, la valoración directa al pie de cama ni los protocolos asistenciales institucionales de su centro de salud.</p>
-        </div>
-    </footer>
+<!-- =========================================================================================
+     FOOTER ÚNICO Y LIMPIO
+     ========================================================================================= -->
+<footer class="footer-sistema-unificado" style="background-color: #1a365d; color: white; text-align: center; padding: 25px 15px; margin-top: 50px; border-top: 4px solid #2b6cb0;">
+    <div class="footer-contenido-principal">
+        <p style="margin: 0 0 8px 0; font-size: 0.95rem;">© 2026. Todos los derechos reservados.</p>
+        <p style="margin: 0 0 15px 0; font-size: 0.9rem; color: #e2e8f0;">
+            Desarrollado por Paulo Glinka | 
+            <a href="mailto:glinkapaulogerman@gmail.com?subject=Consulta%20-%20Asistente%20de%20Valoración%20Enfermería" style="color: #63b3ed; text-decoration: none; font-weight: bold; margin-left: 5px;">
+                ✉️ Contacto Soporte
+            </a>
+        </p>
+    </div>
+    <hr class="divisor-footer" style="border: 0; border-top: 1px solid #2b6cb0; margin: 15px auto; max-width: 80%;">
+    <div class="footer-aviso-legal" style="font-size: 0.78rem; line-height: 1.5; color: #cbd5e0; max-width: 900px; margin: 0 auto; text-align: justify;">
+        <p><strong>Aviso Clínico Importante:</strong> Esta plataforma interactiva es una herramienta estrictamente educativa y de simulación para profesionales y estudiantes de enfermería. Los algoritmos, trazados y escalas automatizadas están basados en directrices internacionales (NPUAP/EPUAP, GCS, RASS, IROX) vigentes a 2026 y no reemplazan bajo ninguna circunstancia el juicio clínico, la valoración directa al pie de cama ni los protocolos asistenciales institucionales de su centro de salud.</p>
+    </div>
+</footer>
 
+<!-- Animación y estilos del botón home -->
+<style>
+    @keyframes reboteEfecto {
+        0% { transform: translateY(0) scale(1); }
+        30% { transform: translateY(-12px) scale(1.05); }
+        50% { transform: translateY(2px) scale(0.98); }
+        70% { transform: translateY(-4px) scale(1.01); }
+        100% { transform: translateY(0) scale(1); }
+    }
 
-    <!--  BOTÓN HOME CON EFECTO REBOTE Y SOMBRA DE CONTORNO -->
-    <style>
-        /* 1. Definimos la animación física del rebote elástico */
-        @keyframes reboteEfecto {
-            0% { transform: translateY(0) scale(1); }
-            30% { transform: translateY(-12px) scale(1.05); } /* Sube y se estira un toque */
-            50% { transform: translateY(2px) scale(0.98); }   /* Cae y amortigua */
-            70% { transform: translateY(-4px) scale(1.01); }  /* Mini rebote final */
-            100% { transform: translateY(0) scale(1); }       /* Vuelve a la calma */
-        }
+    .contenedor-home-nuevo {
+        position: fixed !important;
+        bottom: 25px !important;
+        right: 25px !important;
+        left: auto !important;
+        width: 65px !important;
+        height: 65px !important;
+        z-index: 999999 !important;
+    }
 
-        .contenedor-home-nuevo {
-            position: fixed !important;
-            bottom: 25px !important;
-            right: 25px !important;
-            left: auto !important;
-            width: 65px !important;
-            height: 65px !important;
-            z-index: 999999 !important;
-        }
+    .contenedor-home-nuevo button {
+        width: 100% !important;
+        height: 100% !important;
+        background-color: #2b6cb0 !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 50% !important;
+        font-size: 1.8rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
+    }
 
-        .contenedor-home-nuevo button {
-            width: 100% !important;
-            height: 100% !important;
-            background-color: #2b6cb0 !important;
-            color: white !important;
-            border: none !important;
-            border-radius: 50% !important;
-            font-size: 1.8rem !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            cursor: pointer !important;
-            
-            /* Sombra base suave para dar volumen inicial */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
-            
-            /* Controla que la transición del color y el aura sea fluida */
-            transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
-        }
+    .contenedor-home-nuevo button:hover {
+        background-color: #1a365d !important;
+        animation: reboteEfecto 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both !important;
+        box-shadow: 0 0 0 6px rgba(43, 108, 176, 0.4), 0 8px 20px rgba(0, 0, 0, 0.3) !important;
+    }
 
-        /*  HOVER ACTIVADO: Rebote dinámico + Sombra de Contorno Intensa */
-        .contenedor-home-nuevo button:hover {
-            background-color: #1a365d !important; /* Cambia al azul oscuro institucional */
-            
-            /*  ANIMACIÓN: Ejecuta el rebote una sola vez al pasar el puntero */
-            animation: reboteEfecto 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) inside !important;
-            
-            /*  SOMBRA DE CONTORNO: Un aura azul intensa y nítida que define el contorno esférico */
-            box-shadow: 0 0 0 6px rgba(43, 108, 176, 0.4), 0 8px 20px rgba(0, 0, 0, 0.3) !important;
-        }
+    .contenedor-home-nuevo button:active {
+        transform: scale(0.92) !important;
+        box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.4) !important;
+    }
+</style>
 
-        /* Feedback táctil al presionarlo con fuerza */
-        .contenedor-home-nuevo button:active {
-            transform: scale(0.92) !important; /* Se achica un poquito al hacer clic */
-            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.4) !important;
-        }
-    </style>
-
-   
-
-    <!-- Scripts del sistema -->
-    <script type="module" src="js/main.js"></script>
-</body>
-</html>
-
+<!-- Scripts del sistema -->
+<script type="module" src="js/main.js"></script>
