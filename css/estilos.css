@@ -485,7 +485,7 @@ h3 {
 }
 /* =========================================================================================
    /* =========================================================================================
-   🔬 ESTILOS: LABORATORIO INTERACTIVO DE LESIONES POR PRESIÓN (LPP) - FIX DE IMÁGENES
+   ESTILOS: LABORATORIO INTERACTIVO DE LESIONES POR PRESIÓN (LPP) - FIX DE IMÁGENES
    ========================================================================================= */
 
 .instruccion-simulador {
@@ -574,10 +574,9 @@ h3 {
     max-width: 340px;
     box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
 }
-/* =========================================================================================
+
   /* =========================================================================================
-  /* =========================================================================================
-   🎨 INTERFAZ GRÁFICA VIVA: MONITOR ECG EMBEDIDO EN BOTÓN HOME
+    INTERFAZ GRÁFICA VIVA: MONITOR ECG EMBEDIDO EN BOTÓN HOME
    ========================================================================================= */
 
 .btn-home-ecg-interactivo {
@@ -634,7 +633,7 @@ h3 {
     color: #ffffff !important;
 }
 /* =========================================================================================
-   🌐 ARQUITECTURA VISUAL: FOOTER INSTITUCIONAL UNIFICADO
+   ARQUITECTURA VISUAL: FOOTER INSTITUCIONAL UNIFICADO
    ========================================================================================= */
 
 .footer-sistema-unificado {
@@ -713,4 +712,98 @@ h3 {
     font-size: 2.5rem;
     font-weight: bold;
     color: #333;
+}
+
+/* Estilos para el Buscador y las Tarjetas del Vademécum */
+.buscador-container {
+    margin-bottom: 20px;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.btn-buscar-proa {
+    padding: 12px 24px;
+    background-color: #3182ce; /* Color azul institucional */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.btn-buscar-proa:hover {
+    background-color: #2b6cb0;
+}
+
+.grid-vademecum {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Tarjeta del fármaco */
+.tarjeta-farmaco {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.tarjeta-farmaco h3 {
+    margin-top: 0;
+    color: #2d3748;
+    font-size: 1.25rem;
+    border-bottom: 2px solid #edf2f7;
+    padding-bottom: 8px;
+}
+
+/* Semáforos visuales */
+.alertas-semaforo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.alertas-semaforo span {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    display: block;
+}
+
+/* Clases de semáforo con colores claros de fondo y texto legible */
+.alertas-semaforo .rojo {
+    background-color: #fed7d7;
+    color: #9b2c2c;
+    border-left: 4px solid #e53e3e;
+}
+
+.alertas-semaforo .amarillo {
+    background-color: #fef3c7;
+    color: #92400e;
+    border-left: 4px solid #d97706;
+}
+
+.alertas-semaforo .verde {
+    background-color: #c6f6d5;
+    color: #22543d;
+    border-left: 4px solid #38a169;
 }

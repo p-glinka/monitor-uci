@@ -73,11 +73,20 @@
             <h3>Escala NISS (Neuro UCI)</h3>
             <p>Valor Actual: <span id="home-val-niss">--</span> pts</p>
         </div>
+
+
 </div> <!-- Cierre del módulo principal cuadrado -->
-    </div>
+<!-- index.html - Módulo Vademécum PROA Corregido -->
+        <div class="buscador-container">
+            <h2>Vademécum PROA</h2>
+            <div class="search-box">
+                <input type="text" id="input-busqueda" placeholder="Ej: Meropenem, convulsiones, SF...">
+                <button id="btn-buscar">Buscar</button>
+            </div>
+        </div>
 
-</div> 
-
+        <!-- Contenedor para los resultados -->
+        <div id="contenedor-tarjetas" class="grid-vademecum"></div>
 
         <button class="btn-reset-total" onclick="resetearTodoElSistema()">Resetear Paciente Actual</button>
     </main>
@@ -514,6 +523,26 @@
 
      <!--   <div class="bibliografia-contenedor-unificado" id="biblio-niss" style="margin-top:20px;"></div>
     </div> -->
+
+    <!-- VISTA INDEPENDIENTE DEL VADEMÉCUM PROA -->
+<div id="view-vademecum" class="view" style="display: none;">
+    <!-- Encabezado con botón para volver al Home -->
+    <div class="header-vista">
+        <button class="btn-volver" onclick="showView('view-home')">← Volver al Home</button>
+        <h2>Vademécum PROA</h2>
+    </div>
+
+    <div class="contenido-modulo">
+        <!-- Caja de Búsqueda Estilizada -->
+        <div class="buscador-container">
+            <p class="instruccion-busqueda">Buscá por fármaco, indicación o dilución:</p>
+            <div class="search-box">
+                <!-- Cambiamos los id por clases o añadimos un sufijo para diferenciarlos -->
+        <input type="text" id="input-busqueda-vademecum" placeholder="Ej: Meropenem, convulsiones, SF...">
+        <button id="btn-buscar-vademecum" class="btn-buscar-proa">Buscar</button>
+    <div id="contenedor-tarjetas-vademecum" class="grid-vademecum"></div>
+    </div>
+</div>
 </section>
 <button onclick="showView('view-home')" class="btn-flotante-home" title="Volver al Menú Principal" aria-label="Volver al inicio">
     📋
