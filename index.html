@@ -18,7 +18,7 @@
 </head>
 <body>
     <header role="button" onclick="showView('view-home')" aria-label="Volver al inicio">
-        <h1>Asistente de Valoración para Enfermeria</h1>
+        <h1>Asistente de Valoración para entrenamiento UTI</h1>
     </header>
     <main id="view-home" class="view active">
         <h2 style="margin-bottom: 15px; font-size: 1.2rem; color: #1a365d;">Monitoreo Crítico</h2>
@@ -80,25 +80,23 @@
          MÓDULO VADEMÉCUM (PANTALLA PRINCIPAL / HOME) - COMPLETO Y CORREGIDO
          ========================================================================================= -->
         <div class="buscador-container">
-        <h2>Vademécum</h2>
-        <div class="search-box">
-            <input type="text" id="input-busqueda" placeholder="Ej: Meropenem, convulsiones, SF...">
-            
-            <!-- Botón de borrar que tu JS activa/desactiva dinámicamente -->
-            <button id="btn-borrar" class="btn-limpiar-proa" style="display: none;">✖</button>
-            
-            <button id="btn-buscar" class="btn-buscar-proa">Buscar</button>
+            <h2>Vademécum</h2>
+            <div class="search-box">
+                <input type="text" id="input-busqueda" placeholder="Ej: Meropenem, convulsiones, SF...">
+                
+                <!-- Botón de borrar dinámico -->
+                <button id="btn-borrar" class="btn-limpiar-proa" style="display: none;">✖</button>
+                
+                <button id="btn-buscar" class="btn-buscar-proa">Buscar</button>
+            </div>
         </div>
-    </div>
 
-    <!-- Contenedor para los resultados del buscador -->
-    <div id="contenedor-tarjetas" class="grid-vademecum"></div>
+        <!-- Contenedor para los resultados del buscador -->
+        <div id="contenedor-tarjetas" class="grid-vademecum"></div>
 
-    <!-- Botón de Reset del Sistema -->
-    <button class="btn-reset-total" onclick="resetearTodoElSistema()">Resetear Paciente Actual</button>
-
+        <!-- ÚNICO Botón de Reset del Sistema en el Home -->
         <button class="btn-reset-total" onclick="resetearTodoElSistema()">Resetear Paciente Actual</button>
-    </main>
+    </main> <!-- Cierre correcto de la vista Home -->
 
     <section id="view-gcs" class="view">
         <h2>Evaluación Neurológica: Escala de Glasgow</h2>
