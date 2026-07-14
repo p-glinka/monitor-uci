@@ -807,3 +807,72 @@ h3 {
     color: #22543d;
     border-left: 4px solid #38a169;
 }
+/* Contenedor para alinear los elementos con aire */
+.search-box {
+    display: flex;
+    gap: 8px; /* Separa los elementos elegantemente en lugar de pegarlos */
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* El input se adapta al nuevo estilo redondeado */
+.search-box input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px; /* Redondeado suave estilo tarjeta */
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.search-box input:focus {
+    border-color: #38a169; /* Borde verde quirúrgico al escribir */
+}
+
+/* Base del botón inspirada en los accesos del Home */
+.btn-home-style {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px; /* Mismo redondeado del input y botones principales */
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Sombra suave de tarjeta */
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Transición fluida */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Variación: Botón Buscar (Verde institucional/quirúrgico) */
+.btn-buscar-proa {
+    background-color: #38a169; 
+    color: white;
+}
+
+.btn-buscar-proa:hover {
+    background-color: #2f855a;
+    transform: translateY(-2px); /* Se eleva levemente como los botones del Home */
+    box-shadow: 0 6px 12px -2px rgba(56, 161, 105, 0.3); /* Resplandor verde tenue */
+}
+
+/* Variación: Botón Borrar (Rojo clínico suavizado, oculto por defecto) */
+.btn-borrar-proa {
+    display: none; 
+    background-color: #e53e3e;
+    color: white;
+}
+
+.btn-borrar-proa:hover {
+    background-color: #c53030;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -2px rgba(229, 62, 62, 0.3); /* Resplandor rojo tenue */
+}
+
+/* Efecto de presión común para ambos */
+.btn-home-style:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}

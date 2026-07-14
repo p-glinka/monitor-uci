@@ -75,18 +75,17 @@
         </div>
 
 
-</div> <!-- Cierre del módulo principal cuadrado -->
-<!-- index.html - Módulo Vademécum PROA Corregido -->
-        <div class="buscador-container">
-            <h2>Vademécum</h2>
+        </div> <!-- Aca Cierro el módulo principal cuadrado -->
+    <!-- index.html - Módulo Vademécum PROA Corregido -->
             <div class="search-box">
+                <h2>Vademécum</h2>
                 <input type="text" id="input-busqueda" placeholder="Ej: Meropenem, convulsiones, SF...">
-                <button id="btn-buscar">Buscar</button>
+                <button id="btn-buscar" class="btn-home-style btn-buscar-proa">Buscar</button>
+                <button id="btn-borrar" class="btn-home-style btn-borrar-proa">Borrar</button>
             </div>
-        </div>
 
-        <!-- Contenedor para los resultados -->
-        <div id="contenedor-tarjetas" class="grid-vademecum"></div>
+            <!-- Contenedor para los resultados -->
+            <div id="contenedor-tarjetas" class="grid-vademecum"></div>
 
         <button class="btn-reset-total" onclick="resetearTodoElSistema()">Resetear Paciente Actual</button>
     </main>
@@ -534,7 +533,7 @@
 </div>
 
 <!-- =========================================================================================
-     FOOTER ÚNICO Y LIMPIO
+     FOOTER
      ========================================================================================= -->
 <footer class="footer-sistema-unificado" style="background-color: #1a365d; color: white; text-align: center; padding: 25px 15px; margin-top: 50px; border-top: 4px solid #2b6cb0;">
     <div class="footer-contenido-principal">

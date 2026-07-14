@@ -98,39 +98,52 @@ window.onload = () => {
     // Inyectar accesibilidad WCAG al teclado de forma dinámica en los menús interactivos div
     configurarAccesibilidadTeclado();
 
-    // =========================================================================================
-    // 🔍 BUSCADOR DE FÁRMACOS (Vademécum) - Soporte Multi-Buscador (Home y Sección)
-    // =========================================================================================
+    // Inicializar los buscadores del Vademécum PROA
     configurarBuscadoresPROA();
-};
+}; // <--- 🟢 AQUÍ SE CIERRA CORRECTAMENTE EL WINDOW.ONLOAD
 
+// =========================================================================================
+// 🔍 BUSCADOR DE FÁRMACOS (Vademécum) - Soporte Multi-Buscador (Home y Sección)
+// =========================================================================================
 function configurarBuscadoresPROA() {
-    // Buscamos todas las parejas de inputs y botones que puedan existir en la página
     const searchBoxes = document.querySelectorAll('.search-box');
 
     searchBoxes.forEach(box => {
         const input = box.querySelector('input');
-        const btn = box.querySelector('button');
+        const btnBuscar = box.querySelector('#btn-buscar') || box.querySelector('button');
+        const btnBorrar = box.querySelector('#btn-borrar');
         
-        if (!input || !btn) return;
+        if (!input || !btnBuscar) return;
 
-        // Intentamos encontrar el contenedor de tarjetas más cercano
-        // (Ya sea dentro de la misma vista o buscando globalmente)
         const vistaPadre = box.closest('.view') || box.closest('section') || document;
         const contenedor = vistaPadre.querySelector('[id^="contenedor-tarjetas"]') || document.getElementById('contenedor-tarjetas');
 
         if (contenedor) {
-            btn.addEventListener('click', () => {
-                const textoUsuario = input.value;
+            btnBuscar.addEventListener('click', () => {
+                const textoUsuario = input.value.trim();
+                if (textoUsuario === "") return;
+
                 const resultados = buscarFarmacos(textoUsuario);
                 renderizarMisTarjetas(resultados, contenedor);
+                
+                if (btnBorrar) {
+                    btnBorrar.style.display = 'inline-flex';
+                }
             });
 
             input.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
-                    btn.click();
+                    btnBuscar.click();
                 }
             });
+
+            if (btnBorrar) {
+                btnBorrar.addEventListener('click', () => {
+                    input.value = ""; 
+                    contenedor.innerHTML = ""; 
+                    btnBorrar.style.display = 'none'; 
+                });
+            }
         }
     });
 }
@@ -138,7 +151,7 @@ function configurarBuscadoresPROA() {
 // Función auxiliar para dibujar las tarjetas con la información clínica completa del Vademécum
 function renderizarMisTarjetas(listaDeFarmacos, contenedorElemento) {
     if (!contenedorElemento) return;
-    contenedorElemento.innerHTML = ""; // Limpiamos la pantalla anterior
+    contenedorElemento.innerHTML = ""; 
 
     if (listaDeFarmacos.length === 0) {
         contenedorElemento.innerHTML = `
@@ -186,7 +199,7 @@ function renderizarMisTarjetas(listaDeFarmacos, contenedorElemento) {
     });
 }
 
-// Exponer funciones críticas al objeto global window para que sigan respondiendo a los onclick del HTML
+// Exponer funciones críticas al objeto global window
 window.calcularGlasgow = calcularGlasgow;
 window.calcIrox = calcIrox;
 window.calcularRass = calcularRass;   
