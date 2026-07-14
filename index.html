@@ -76,16 +76,26 @@
 
 
         </div> <!-- Aca Cierro el módulo principal cuadrado -->
-    <!-- index.html - Módulo Vademécum PROA Corregido -->
-            <div class="search-box">
-                <h2>Vademécum</h2>
-                <input type="text" id="input-busqueda" placeholder="Ej: Meropenem, convulsiones, SF...">
-                <button id="btn-buscar" class="btn-home-style btn-buscar-proa">Buscar</button>
-                <button id="btn-borrar" class="btn-home-style btn-borrar-proa">Borrar</button>
-            </div>
+        <!-- =========================================================================================
+         MÓDULO VADEMÉCUM (PANTALLA PRINCIPAL / HOME) - COMPLETO Y CORREGIDO
+         ========================================================================================= -->
+        <div class="buscador-container">
+        <h2>Vademécum</h2>
+        <div class="search-box">
+            <input type="text" id="input-busqueda" placeholder="Ej: Meropenem, convulsiones, SF...">
+            
+            <!-- Botón de borrar que tu JS activa/desactiva dinámicamente -->
+            <button id="btn-borrar" class="btn-limpiar-proa" style="display: none;">✖</button>
+            
+            <button id="btn-buscar" class="btn-buscar-proa">Buscar</button>
+        </div>
+    </div>
 
-            <!-- Contenedor para los resultados -->
-            <div id="contenedor-tarjetas" class="grid-vademecum"></div>
+    <!-- Contenedor para los resultados del buscador -->
+    <div id="contenedor-tarjetas" class="grid-vademecum"></div>
+
+    <!-- Botón de Reset del Sistema -->
+    <button class="btn-reset-total" onclick="resetearTodoElSistema()">Resetear Paciente Actual</button>
 
         <button class="btn-reset-total" onclick="resetearTodoElSistema()">Resetear Paciente Actual</button>
     </main>
