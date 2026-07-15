@@ -74,6 +74,18 @@
             <p>Valor Actual: <span id="home-val-niss">--</span> pts</p>
         </div>
 
+        <!-- CAJA DEL MÓDULO TISS-28 -->
+        <div class="menu-item" role="button" onclick="showView('view-tiss')">
+            <h3>Carga Laboral (TISS-28)</h3>
+            <p>Puntaje Actual: <span id="home-val-tiss">--</span> pts</p>
+        </div>
+
+        <!-- CAJA DE ACCESO NIHSS (ACV) -->
+        <div class="menu-item" role="button" onclick="showView('view-nihss')">
+            <h3>Escala NIHSS (ACV)</h3>
+            <p>Valor Actual: <span id="home-val-nihss">0</span>/42 pts</p>
+        </div>
+
 
         </div> <!-- Aca Cierro el módulo principal cuadrado -->
         <!-- =========================================================================================
@@ -529,6 +541,159 @@
                 <h4 id="niss-interpretacion-titulo">Seleccione todas las variables</h4>
                 <p id="niss-interpretacion-txt">Complete la evaluación clínica para ver el informe.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================================
+     SECCIÓN: EVALUACIÓN DE CARGA LABORAL TISS-28
+     ========================================================================================= -->
+<section id="view-tiss" class="view">
+    <div class="escala-container" style="max-width: 750px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h2 style="color: #1a365d; text-align: center; margin-bottom: 5px;">Carga de Trabajo de Enfermería: TISS-28</h2>
+        <p style="text-align: center; color: #718096; font-size: 0.9rem; margin-bottom: 20px;">Utilice este módulo para objetivar la complejidad del cuidado y prevenir la sobrecarga laboral.</p>
+
+        <!-- Alerta dinámica de sobrecarga laboral -->
+        <div id="alerta-tiss" class="alerta-clinica" style="display:none; padding: 15px; border-radius: 6px; margin-bottom: 20px; font-weight: bold; font-size: 0.95rem; line-height: 1.5;"></div>
+        
+        <form id="tiss-form" class="calculadora-form">
+            
+            <!-- Grupo 1: Actividades Básicas -->
+            <div class="criterio-grupo" style="margin-bottom: 20px;">
+                <h3 style="color: #2d3748; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 12px;">1. Actividades Básicas</h3>
+                <div class="opciones-lista" style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="5" style="margin-top: 4px;">
+                        <span>Monitoreo estándar: Signos vitales, balance hídrico por turno (5 pts)</span>
+                    </label>
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="5" style="margin-top: 4px;">
+                        <span>Monitoreo activo: Ajustes frecuentes, cálculo de balances horario (5 pts)</span>
+                    </label>
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="2" style="margin-top: 4px;">
+                        <span>Medicación estándar: Vía oral, subcutánea, IM o IV intermitente (2 pts)</span>
+                    </label>
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="3" style="margin-top: 4px;">
+                        <span>Medicación vasoactiva múltiple o infusiones continuas complejas (3 pts)</span>
+                    </label>
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="1" style="margin-top: 4px;">
+                        <span>Curaciones estándar: Cuidado de vías y cambios de apósitos diarios (1 pt)</span>
+                    </label>
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="5" style="margin-top: 4px;">
+                        <span>Cuidado de drenajes múltiples, lavado gástrico o heridas complejas (5 pts)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Grupo 2: Soporte Ventilatorio -->
+            <div class="criterio-grupo" style="margin-bottom: 20px;">
+                <h3 style="color: #2d3748; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 12px;">2. Soporte Ventilatorio</h3>
+                <div class="opciones-lista" style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="5" style="margin-top: 4px;">
+                        <span>Oxigenoterapia, aerosolterapia, CPAP o ventilación no invasiva (5 pts)</span>
+                    </label>
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="10" style="margin-top: 4px;">
+                        <span>Ventilación mecánica invasiva (ARM) con o sin PEEP (10 pts)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Grupo 3: Soporte Cardiovascular -->
+            <div class="criterio-grupo" style="margin-bottom: 20px;">
+                <h3 style="color: #2d3748; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 12px;">3. Soporte Cardiovascular</h3>
+                <div class="opciones-lista" style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="3" style="margin-top: 4px;">
+                        <span>Infusión de una droga vasoactiva (3 pts)</span>
+                    </label>
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="8" style="margin-top: 4px;">
+                        <span>Infusión de más de una droga vasoactiva (8 pts)</span>
+                    </label>
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="8" style="margin-top: 4px;">
+                        <span>Reposición masiva de volumen o transfusión de hemoderivados (8 pts)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Grupo 4: Soporte Renal y Neurológico -->
+            <div class="criterio-grupo" style="margin-bottom: 20px;">
+                <h3 style="color: #2d3748; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 12px;">4. Soporte Renal y Neurológico</h3>
+                <div class="opciones-lista" style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="3" style="margin-top: 4px;">
+                        <span>Técnicas de depuración renal continua o diálisis intermitente (3 pts)</span>
+                    </label>
+                    <label class="opcion-item" style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" name="tiss" value="4" style="margin-top: 4px;">
+                        <span>Medición de Presión Intracraneana (PIC) o manejo del paciente neurocrítico (4 pts)</span>
+                    </label>
+                </div>
+            </div>
+        </form>
+
+        <!-- Tarjeta de resultados -->
+        <div id="tiss-resultado-card" class="resultado-card" style="margin-top:20px; padding:15px; border-radius:6px; background:#f7fafc; border: 1px solid #e2e8f0;">
+            <div class="resultado-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="resultado-label" style="font-weight: bold; color: #4a5568; font-size: 0.9rem;">PUNTUACIÓN TOTAL TISS-28</span>
+                <div id="tiss-score" class="resultado-numero" style="font-size:2rem; font-weight:bold; color: #2d3748;">0 pts</div>
+            </div>
+            <div class="resultado-cuerpo" style="margin-top: 10px; border-top: 1px solid #edf2f7; padding-top: 10px;">
+                <h4 id="tiss-interpretacion-titulo" style="margin: 0 0 5px 0; color: #2d3748;">Sin intervenciones seleccionadas</h4>
+                <p id="tiss-interpretacion-txt" style="margin: 0; color: #718096; font-size: 0.9rem; line-height: 1.4;">Marque los cuidados que recibe el paciente para evaluar el impacto de la carga laboral.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================================
+     SECCIÓN: EVALUACIÓN DINÁMICA NIHSS
+     ========================================================================================= -->
+<section id="view-nihss" class="view">
+    <div class="escala-container" style="max-width: 850px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        
+        <h2 style="color: #1a365d; text-align: center; margin-bottom: 5px;">Escala de Ictus NIHSS</h2>
+        <p style="text-align: center; color: #718096; font-size: 0.9rem; margin-bottom: 20px;">
+            Evaluación cuantitativa del déficit neurológico en sospecha de ACV[cite: 12].
+        </p>
+
+        <!-- Banner de alerta clínica dinámica -->
+        <div id="alerta-nihss" class="alerta-clinica" style="display:none; padding: 15px; border-radius: 6px; margin-bottom: 20px; font-weight: bold; font-size: 0.95rem;"></div>
+
+        <!-- Barra de Progreso Interactiva -->
+        <div style="background: #edf2f7; border-radius: 10px; height: 10px; width: 100%; margin-bottom: 25px; overflow: hidden; position: relative;">
+            <div id="nihss-progreso-barra" style="background: #3182ce; height: 100%; width: 0%; transition: width 0.3s ease;"></div>
+        </div>
+
+        <form id="nihss-form" class="calculadora-form">
+            <div id="nihss-carousel-container">
+                <!-- Tarjetas dinámicas generadas por JS -->
+            </div>
+        </form>
+
+        <!-- Panel de Resultados de Simulación -->
+        <div id="nihss-resultado-card" class="resultado-card" style="margin-top:25px; padding:20px; border-radius:6px; background:#f7fafc; border: 1px solid #e2e8f0; text-align: center;">
+            <div class="resultado-header" style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
+                <span class="resultado-label" style="font-weight: bold; color: #4a5568; font-size: 1.1rem;">PUNTUACIÓN TOTAL NIHSS</span>
+                <div id="nihss-score" class="resultado-numero" style="font-size:3rem; font-weight:bold; color: #2d3748;">0 pts</div>
+            </div>
+            <div class="resultado-cuerpo" style="margin-top: 15px; border-top: 1px solid #edf2f7; padding-top: 15px;">
+                <h4 id="nihss-interpretacion-titulo" style="margin: 0 0 5px 0; color: #2d3748; font-size: 1.2rem;">Evaluación en progreso</h4>
+                <p id="nihss-interpretacion-txt" style="margin: 0; color: #718096; font-size: 0.95rem; line-height: 1.5;">Complete todos los ítems para ver el análisis de severidad y el plan de cuidados recomendado.</p>
+            </div>
+        </div>
+
+        <!-- Historial y Tendencias -->
+        <div class="tendencia-bloque" style="margin-top: 30px; padding: 15px; background: #f7fafc; border-radius: 6px;">
+            <h3 style="color: #2d3748; font-size: 1rem; margin-bottom: 10px;">Evolución y Tendencia Reciente</h3>
+            <div id="timeline-nihss"></div>
         </div>
     </div>
 </section>

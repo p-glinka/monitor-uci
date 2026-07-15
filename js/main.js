@@ -1,13 +1,17 @@
+// js/main.js - IMPORTACIONES UNIFICADAS
 import { inicializarGlasgow, calcularGlasgow, resetGlasgow } from './glasgow.js';
 import { calcIrox, inicializarIrox, resetIrox } from './irox.js';
 import { inicializarRass, calcularRass, resetRass } from './rass.js'; 
 import { inicializarBraden, calcularBraden, resetBraden } from './braden.js';  
-import { inicializarNiss, resetNiss } from './niss.js'; 
-import { actualizarLineaTiempoUI } from './utilidades.js';
 import { inicializarECG } from './ecg.js'; 
-import './cefalo.js'; 
-import './upp-dinamico.js'; 
 import { buscarFarmacos } from './farmacos.js';
+import { inicializarNiss, resetNiss } from './niss.js'; 
+import { inicializarTiss, resetTiss, calcularTISS28 } from './tiss.js'; 
+import { actualizarLineaTiempoUI } from './utilidades.js';
+import { inicializarNihss, resetNihss } from './nihss.js';
+import './cefalo.js'; 
+import './upp-dinamico.js';
+
 
 window.onload = () => {
     inicializarGlasgow();
@@ -16,6 +20,11 @@ window.onload = () => {
     inicializarBraden(); 
     inicializarNiss();   
     inicializarECG(); 
+    inicializarTiss(); 
+    inicializarNihss();
+
+    actualizarLineaTiempoUI('nihss'); // Inicia el renderizado del historial en el gráfico
+    
 
     // =========================================================================================
     // ⚡ MOTOR INTERNO: TRAZADO ECG EN VIVO PARA EL BOTÓN DEL HOME
@@ -204,6 +213,8 @@ window.calcularGlasgow = calcularGlasgow;
 window.calcIrox = calcIrox;
 window.calcularRass = calcularRass;   
 window.calcularBraden = calcularBraden; 
+window.calcularTISS28 = calcularTISS28; 
+window.resetNihss = resetNihss; 
 
 window.showView = function(viewId) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -219,7 +230,8 @@ window.resetearTodoElSistema = function() {
         resetRass();   
         resetBraden(); 
         resetNiss();
-
+        resetTiss(); 
+        resetNihss();
         window.showView('view-home');
     }
 };

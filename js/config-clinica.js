@@ -23,5 +23,17 @@ export const CONFIG_CLINICA = {
             FIO2: { MIN: 0.21, MAX: 1.0 },
             FR: { MIN: 5, MAX: 70 }
         }
+    },
+   //  CONFIGURACIÓN NIHSS (ACV) TOTALMENTE CORREGIDA
+    nihss: {
+        UMBRAL_CRITICO: 16,     // > 16 predice alta probabilidad de daño severo o fallecimiento[cite: 12]
+        UMBRAL_LEVE: 6,         // <= 6 predice alta probabilidad de buena recuperación[cite: 12]
+        VALORES_BASE: {
+            conciencia1a: 0, conciencia1b: 0, conciencia1c: 0,
+            mirada: 0, visual: 0, paralisisfacial: 0,
+            brazod: 0, brazoi: 0, piernad: 0, piernai: 0,
+            ataxia: 0, sensitivo: 0, lenguaje: 0,
+            disartria: 0, extincion: 0
+        }
     }
 };
