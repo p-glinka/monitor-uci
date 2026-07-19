@@ -439,11 +439,13 @@
 
     </div>
 </main>
-
+<!-- =========================================================================================
+      UPP
+     ========================================================================================= -->
 <main id="view-upp-dinamico" class="view">
     <div class="card-escala">
         <div class="card-header-escala">
-            <h2>Laboratorio de Isquemia Tisular (LPP)</h2>
+            <h2>Laboratorio de Isquemia Tisular</h2>
             <button class="btn-opcion" onclick="showView('view-home')">Volver</button>
         </div>
         
@@ -477,10 +479,24 @@
             <button class="btn-reset-total" onclick="resetearSimuladorPiel()" style="margin-top: 15px;">Liberar Presión y Cambiar Sábanas</button>
         </div>
     </div>
+    <!-- =========================================================================================
+      CODIGO QR
+     ========================================================================================= -->
+     <!-- Panel de instrucciones para el Aula -->
+<div class="tarjeta-instrucciones-aula">
+    <h3>📱 Acceso Rápido para Alumnos</h3>
+    <p>Escaneá este código con tu celular para abrir el simulador con Realidad Aumentada directo en tu espacio.</p>
+    
+    <!-- 🟢 Contenedor donde el script va a renderizar el QR de forma síncrona -->
+    <div id="contenedor-qr-aula" class="qr-clinico-container"></div>
+</div>
+
+<!-- Librería nativa y ultra liviana (inyectada antes del cierre de tu body) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </main>
 
 <!-- =========================================================================================
-     SECCIÓN: EVALUACIÓN AVANZADA NISS
+      EVALUACIÓN AVANZADA NISS
      ========================================================================================= -->
 <section id="view-niss" class="view">
     <h2>Evaluación Avanzada: Escala NISS</h2>
@@ -546,7 +562,7 @@
 </section>
 
 <!-- =========================================================================================
-     SECCIÓN: EVALUACIÓN DE CARGA LABORAL TISS-28
+      EVALUACIÓN DE CARGA LABORAL TISS-28
      ========================================================================================= -->
 <section id="view-tiss" class="view">
     <div class="escala-container" style="max-width: 750px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">

@@ -136,3 +136,40 @@ window.resetearSimuladorPiel = function() {
     detenerCompresionIsquemica();
     actualizarFisiopatologiaUI();
 };
+
+window.inicializarSimuladorUPP = function() {
+    const visorAR = document.getElementById('modelo-upp-ar');
+    if (!visorAR) return;
+
+    visorAR.setAttribute('src', estadiosUPP[0].imagen);
+
+    visorAR.addEventListener('pointerdown', iniciarCompresionIsquemica);
+    visorAR.addEventListener('pointerup', detenerCompresionIsquemica);
+    visorAR.addEventListener('pointerleave', detenerCompresionIsquemica);
+    
+    actualizarPinesVisibles(0);
+
+    // 🟢 DISPARO DINÁMICO: Genera el QR apuntando a la pantalla del aula automáticamente
+    generarQrSimulador();
+};
+
+// 🌐 FUNCIÓN PRIVADA DE RENDERIZADO DE QR
+function generarQrSimulador() {
+    const contenedorQR = document.getElementById('contenedor-qr-aula');
+    if (!contenedorQR) return;
+
+    // Limpieza de seguridad para evitar duplicados en re-renders
+    contenedorQR.innerHTML = "";
+
+    // Toma la URL exacta donde esté corriendo la app en ese milisegundo
+    const urlSimulador = window.location.href; 
+
+    new QRCode(contenedorQR, {
+        text: urlSimulador,
+        width: 140,
+        height: 140,
+        colorDark: "#0f172a",  // Slate oscuro para hacer juego con interfaces modernas
+        colorLight: "#ffffff", // Fondo blanco puro para facilitar el contraste de las cámaras
+        correctLevel: QRCode.CorrectLevel.H // Nivel alto de redundancia por si la pantalla refleja luz
+    });
+}

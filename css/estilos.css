@@ -1153,3 +1153,24 @@ h3 {
         font-size: 2.8rem;
     }
 }
+
+.qr-clinico-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 12px;
+    border-radius: 8px;
+    width: 164px; /* 140px del QR + paddings */
+    height: 164px;
+    margin: 15px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid #374151; /* Borde integrado al modo oscuro */
+}
+
+/* Ajuste opcional para que la imagen generada por la librería sea responsiva dentro del contenedor */
+.qr-clinico-container img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
