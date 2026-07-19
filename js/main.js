@@ -35,7 +35,7 @@ window.onload = () => {
     actualizarLineaTiempoUI('RASS');   
     actualizarLineaTiempoUI('Braden'); 
 
-    // Inicializar el Simulador de UPP Dinámico
+    // Inicializar el Simulador de UPP Dinámico en la carga inicial
     window.inicializarSimuladorUPP(); 
     
     // Inyectar accesibilidad WCAG al teclado para navegación por boxes interactivos
@@ -154,6 +154,13 @@ window.showView = function(viewId) {
     const targetView = document.getElementById(viewId);
     if (targetView) targetView.classList.add('active');
     window.scrollTo(0,0);
+
+    // 🔬 Fuerza la inicialización y el renderizado del QR al entrar a la sección
+    if (viewId === 'view-upp-dinamico') {
+        if (typeof window.inicializarSimuladorUPP === 'function') {
+            window.inicializarSimuladorUPP();
+        }
+    }
 };
 
 window.resetearTodoElSistema = function() {

@@ -12,48 +12,48 @@ const estadiosUPP = [
     { 
         fase: "Piel Sana", 
         horas: 0, 
-        imagen: "img/upp/upp0.jpg", // 📁 Ruta local a la imagen de piel sana de tu folleto
+        imagen: "img/upp/upp0.jpg", 
         desc: "<strong>Estado Fisiológico:</strong> Tejido íntegro. Perfusión capilar adecuada (Microcirculación conservada).", 
         accion: "Mantener rotación cada 2 horas y protección con ácidos grasos hiperoxigenados." 
     },
     { 
         fase: "Estadio I: Eritema No Blanqueable", 
         horas: 2, 
-        imagen: "img/upp/upp1.jpg", // 📁 Tu imagen del folleto para Estadio I
+        imagen: "img/upp/upp1.jpg", 
         desc: "<strong>Fisiopatología:</strong> Piel intacta con eritema que no palidece a la presión. Alteración de la microcirculación por decúbito.", 
         accion: "🔴 Alerta: Alivio inmediato de la presión. Colocar apósito de espuma de poliuretano." 
     },
     { 
         fase: "Estadio II: Pérdida de Espesor Parcial", 
         horas: 6, 
-        imagen: "img/upp/upp2.jpg", // 📁 Tu imagen del folleto para Estadio II
+        imagen: "img/upp/upp2.jpg", 
         desc: "<strong>Clínica:</strong> Epitelización perdida. Úlcera abierta con lecho rosado, sin esfacelos. Puede presentarse como ampolla.", 
         accion: "Curación húmeda estéril. Evitar fricción hidrodinámica absoluta en sábanas." 
     },
     { 
         fase: "Estadio III: Pérdida Total del Espesor", 
         horas: 12, 
-        imagen: "img/upp/upp3.jpg", // 📁 Tu imagen del folleto para Estadio III
+        imagen: "img/upp/upp3.jpg", 
         desc: "<strong>Severidad:</strong> Tejido celular subcutáneo (grasa) visible. Presencia de esfacelos y posible tunelización subdérmica.", 
         accion: "Desbridamiento autolítico o enzimático. Valorar carga bacteriana e infección." 
     },
     { 
         fase: "Estadio IV: Exposición de Tejidos Profundos", 
         horas: 24, 
-        imagen: "img/upp/upp4.jpg", // 📁 Tu imagen del folleto para Estadio IV
+        imagen: "img/upp/upp4.jpg", 
         desc: "<strong>Destrucción Masiva:</strong> Exposición directa de músculo, tendón o hueso. Alto riesgo de Osteomielitis activa.", 
         accion: "Intervención quirúrgica urgente. Control de exudado severo y terapia VAC." 
     },
     { 
         fase: "No Clasificable: Escara Necrótica", 
         horas: 36, 
-        imagen: "img/upp/upp5.jpg", // 📁 Tu imagen del folleto para Tejido Necrótico/Escara
+        imagen: "img/upp/upp5.jpg", 
         desc: "<strong>Oclusión Total:</strong> Lecho cubierto por esfacelos (amarillo/marrón) o escara necrótica (negra). Imposible estadificar fondo.", 
         accion: "No desbridar escaras secas estables en talones. Mantener seco y monitorizado." 
     }
 ];
 
-// 🌐 EXPOSICIÓN GLOBAL PARA RESPONDER AL HTML
+// 🌐 UNIFICACIÓN Y EXPOSICIÓN GLOBAL DEL INICIALIZADOR
 window.inicializarSimuladorUPP = function() {
     const piel = document.getElementById('zona-piel-simulada');
     if (!piel) return;
@@ -61,10 +61,13 @@ window.inicializarSimuladorUPP = function() {
     // Configuración de la primera imagen por defecto al cargar el módulo
     piel.style.backgroundImage = `url('${estadiosUPP[0].imagen}')`;
 
-    // Detectores de eventos táctiles unificados
+    // Detectores de eventos táctiles y puntero vinculados a la esfera táctil real
     piel.addEventListener('pointerdown', iniciarCompresionIsquemica);
     piel.addEventListener('pointerup', detenerCompresionIsquemica);
     piel.addEventListener('pointerleave', detenerCompresionIsquemica);
+
+    // 🟢 DISPARO DINÁMICO: Genera el QR apuntando a la pantalla del aula automáticamente
+    generarQrSimulador();
 };
 
 function iniciarCompresionIsquemica(e) {
@@ -135,22 +138,6 @@ window.resetearSimuladorPiel = function() {
     tiempoPresion = 0;
     detenerCompresionIsquemica();
     actualizarFisiopatologiaUI();
-};
-
-window.inicializarSimuladorUPP = function() {
-    const visorAR = document.getElementById('modelo-upp-ar');
-    if (!visorAR) return;
-
-    visorAR.setAttribute('src', estadiosUPP[0].imagen);
-
-    visorAR.addEventListener('pointerdown', iniciarCompresionIsquemica);
-    visorAR.addEventListener('pointerup', detenerCompresionIsquemica);
-    visorAR.addEventListener('pointerleave', detenerCompresionIsquemica);
-    
-    actualizarPinesVisibles(0);
-
-    // 🟢 DISPARO DINÁMICO: Genera el QR apuntando a la pantalla del aula automáticamente
-    generarQrSimulador();
 };
 
 // 🌐 FUNCIÓN PRIVADA DE RENDERIZADO DE QR
