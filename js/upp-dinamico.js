@@ -7,7 +7,7 @@ let tiempoPresion = 0;           // Cronómetro de segundos reales de presión s
 let intervaloPresion = null;     // ID del bucle asincrónico para la oclusión capilar.
 let regionSeleccionada = 'sacro';// Ubicación anatómica actual elegida por el alumno.
 
-// 📚 BIBLIOTECA CLÍNICA ASOCIADA A LAS IMÁGENES DEL FLIER DEL USUARIO (Carpeta local img/)
+// 📚 BIBLIOTECA CLÍNICA ASOCIADA A LAS IMÁGENES LOCALES (Carpeta img/upp/)
 const estadiosUPP = [
     { 
         fase: "Piel Sana", 
@@ -58,15 +58,15 @@ window.inicializarSimuladorUPP = function() {
     const piel = document.getElementById('zona-piel-simulada');
     if (!piel) return;
 
-    // Configuración de la primera imagen por defecto al cargar el módulo
+    // Configuración de la primera imagen por defecto
     piel.style.backgroundImage = `url('${estadiosUPP[0].imagen}')`;
 
-    // Detectores de eventos táctiles y puntero vinculados a la esfera táctil real
+    // Detectores de eventos táctiles y puntero
     piel.addEventListener('pointerdown', iniciarCompresionIsquemica);
     piel.addEventListener('pointerup', detenerCompresionIsquemica);
     piel.addEventListener('pointerleave', detenerCompresionIsquemica);
 
-    // 🟢 DISPARO DINÁMICO: Genera el QR apuntando a la pantalla del aula automáticamente
+    // Genera el QR del aula automáticamente
     generarQrSimulador();
 };
 
@@ -76,9 +76,15 @@ function iniciarCompresionIsquemica(e) {
     if (!piel) return;
     piel.classList.add('presionando');
 
+    // Visor RA/3D visible al presionar
+    const visorRA = document.getElementById('contenedor-ra-upp');
+    if (visorRA) {
+        visorRA.classList.add('ra-activa');
+    }
+
     if (intervaloPresion) clearInterval(intervaloPresion);
 
-    // Bucle cronológico en tiempo real
+    // Bucle cronológico
     intervaloPresion = setInterval(() => {
         tiempoPresion++;
         actualizarFisiopatologiaUI();
@@ -88,6 +94,13 @@ function iniciarCompresionIsquemica(e) {
 function detenerCompresionIsquemica() {
     const piel = document.getElementById('zona-piel-simulada');
     if (piel) piel.classList.remove('presionando');
+
+    // Oculta el visor al soltar
+    const visorRA = document.getElementById('contenedor-ra-upp');
+    if (visorRA) {
+        visorRA.classList.remove('ra-activa');
+    }
+
     if (intervaloPresion) {
         clearInterval(intervaloPresion);
         intervaloPresion = null;
@@ -110,7 +123,6 @@ function actualizarFisiopatologiaUI() {
     const panelDesc = document.getElementById('upp-descripcion-clinica');
     const panelAccion = document.getElementById('upp-accion-enfermeria');
 
-    // Inyección dinámica de la imagen del flier guardada localmente
     if (piel) {
         piel.style.setProperty('background-image', `url('${estadioActual.imagen}')`, 'important');
     }
@@ -119,9 +131,6 @@ function actualizarFisiopatologiaUI() {
     if (indicadorHoras) indicadorHoras.innerText = `${tiempoPresion} hs`;
     if (panelDesc) panelDesc.innerHTML = estadioActual.desc;
     if (panelAccion) panelAccion.innerHTML = `<strong>Plan de Cuidados:</strong> ${estadioActual.accion}`;
-
-    const homeBadge = document.getElementById('home-val-upp-dinamico');
-    if (homeBadge) homeBadge.innerText = estadioActual.fase.split(':')[0];
 }
 
 window.cambiarRegionAnatomica = function(region, elemento) {
@@ -140,23 +149,21 @@ window.resetearSimuladorPiel = function() {
     actualizarFisiopatologiaUI();
 };
 
-// 🌐 FUNCIÓN PRIVADA DE RENDERIZADO DE QR
 function generarQrSimulador() {
     const contenedorQR = document.getElementById('contenedor-qr-aula');
     if (!contenedorQR) return;
 
-    // Limpieza de seguridad para evitar duplicados en re-renders
     contenedorQR.innerHTML = "";
-
-    // Toma la URL exacta donde esté corriendo la app en ese milisegundo
     const urlSimulador = window.location.href; 
 
-    new QRCode(contenedorQR, {
-        text: urlSimulador,
-        width: 140,
-        height: 140,
-        colorDark: "#0f172a",  // Slate oscuro para hacer juego con interfaces modernas
-        colorLight: "#ffffff", // Fondo blanco puro para facilitar el contraste de las cámaras
-        correctLevel: QRCode.CorrectLevel.H // Nivel alto de redundancia por si la pantalla refleja luz
-    });
+    if (typeof QRCode !== 'undefined') {
+        new QRCode(contenedorQR, {
+            text: urlSimulador,
+            width: 140,
+            height: 140,
+            colorDark: "#0f172a",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
 }

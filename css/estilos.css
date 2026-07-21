@@ -1174,3 +1174,18 @@ h3 {
     max-width: 100%;
     height: auto;
 }
+
+/* ==========================================================================
+   🥽 VISOR DE REALIDAD AUMENTADA / MODELO 3D DE UPP
+   ========================================================================== */
+
+#contenedor-ra-upp {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#contenedor-ra-upp.ra-activa {
+    display: block !important;
+    opacity: 1 !important;
+}

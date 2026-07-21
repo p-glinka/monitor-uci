@@ -470,26 +470,29 @@
                 </div>
             </div>
 
+            <!-- Visor 3D / RA (Se activa únicamente al presionar) -->
+            <div id="contenedor-ra-upp">
+                <p style="text-align:center; color:#2b6cb0; font-weight:bold; margin-top: 10px;">
+                    🥽 Simulación de Capas Tisulares Activa
+                </p>
+            </div>
+
             <div class="alert-box verde" id="info-fisiopatologica" style="margin-top:20px; display:block;">
                 <p id="upp-descripcion-clinica"><strong>Estado Fisiológico:</strong> Tejido íntegro. Perfusión capilar adecuada (Microcirculación conservada).</p>
                 <hr style="margin:10px 0; border:0; border-top:1px solid rgba(0,0,0,0.1);">
                 <p id="upp-accion-enfermeria"><strong>Plan de Cuidados:</strong> Mantener rotación cada 2 horas y protección con ácidos grasos hiperoxigenados.</p>
             </div>
 
+            <!-- Código QR generado automáticamente para el aula -->
+            <div class="qr-clinico-container">
+                <div id="contenedor-qr-aula"></div>
+            </div>
+
             <button class="btn-reset-total" onclick="resetearSimuladorPiel()" style="margin-top: 15px;">Liberar Presión y Cambiar Sábanas</button>
         </div>
     </div>
-    <!-- =========================================================================================
-      CODIGO QR
-     ========================================================================================= -->
-     <!-- Panel de instrucciones para el Aula -->
-<div class="tarjeta-instrucciones-aula">
-    <h3>📱 Acceso Rápido para Alumnos</h3>
-    <p>Escaneá este código con tu celular para abrir el simulador con Realidad Aumentada directo en tu espacio.</p>
-    
-    <!-- 🟢 Contenedor donde el script va a renderizar el QR de forma síncrona -->
-    <div id="contenedor-qr-aula" class="qr-clinico-container"></div>
-</div>
+</main>
+ 
 
 <!-- Librería nativa y ultra liviana (inyectada antes del cierre de tu body) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -546,7 +549,7 @@
                     <label class="opcion-item"><input type="radio" name="respiracion" value="0"><span>Respiración apnéustica, atáxica o apnea (0 pts)</span></label>
                 </div>
             </div>
-        </form>
+        </form>9
 
         <div id="niss-resultado-card" class="resultado-card estado-espera" style="margin-top:20px; padding:15px; border-radius:6px; background:#f7fafc;">
             <div class="resultado-header">
