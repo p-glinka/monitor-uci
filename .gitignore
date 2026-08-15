@@ -7,3 +7,7 @@ Thumbs.db
 
 # Archivos de registro de errores
 *.log
+
+.git/
+.wrangler/
+node_modules/
